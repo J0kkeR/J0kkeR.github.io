@@ -9,10 +9,5 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: https://z91kyq.coding-pages.com//sitemap.xml
-Sitemap: https://z91kyq.coding-pages.com//baidusitemap.xml
-
-
-
-
-
+Sitemap: http://www.zhoulinrui.com/sitemap.xml
+Sitemap: http://www.zhoulinrui.com/baidusitemap.xml
