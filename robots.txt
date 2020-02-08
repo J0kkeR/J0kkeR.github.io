@@ -9,5 +9,10 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: http://www.jlovek.cn//sitemap.xml
-Sitemap: http://www.jlovek.cn//baidusitemap.xml
+Sitemap: https://z91kyq.coding-pages.com//sitemap.xml
+Sitemap: https://z91kyq.coding-pages.com//baidusitemap.xml
+
+
+
+
+
