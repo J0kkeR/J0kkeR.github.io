@@ -2,7 +2,7 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>HTTPS Encryption Explained - J0kkeR</title>
+<title>树莓派系统基本设置 - J0kkeR</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -11,18 +11,20 @@
 
 
 
-    <meta name="description" content="转载自微信公众号:车小胖谈网络 本文内容仅供学习交流，如有侵权立即删除。 QuestionⅠ 好比说邮箱，登录时进行HTTPS加密了，即使提交时保护了账户信息，但之后的请求，邮件服务器返回的网页源代码，信件内容不是都在上面吗？这些信息同时被加密了吗？   纠正一点，这个世界上压根没有HTTPS这个协议。当我们提到HTTPS时，其实同时提到两个协议，一个是TLS，另外一个是HTTP，它们狼狈为奸抱团">
-<meta name="keywords" content="Reproduced">
+    <meta name="description" content="Raspbian 简介 Raspbian 是专门用于 ARM 卡片式计算机 Raspberry Pi® “树莓派”的操作系统。 Raspberry Pi® “树莓派”是 2012 年问世的 ARM 计算机，旨在为儿童和所有的计算机爱好者提供一套廉价的编程学习与硬件 DIY 平台。树莓派基于 ARM11，具有 1080P 高清视频解析能力，附带用于硬件开发的 GPIO 接口，使用Linux操作系统。">
+<meta name="keywords" content="Raspberry-Pi,Liunx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTTPS Encryption Explained">
-<meta property="og:url" content="https://www.jlovek.cn/2020/02/09/HTTPS-encryption-explained/index.html">
+<meta property="og:title" content="树莓派系统基本设置">
+<meta property="og:url" content="https://www.jlovek.cn/2019/02/05/Raspberry-Pi1_Config/index.html">
 <meta property="og:site_name" content="J0kkeR">
-<meta property="og:description" content="转载自微信公众号:车小胖谈网络 本文内容仅供学习交流，如有侵权立即删除。 QuestionⅠ 好比说邮箱，登录时进行HTTPS加密了，即使提交时保护了账户信息，但之后的请求，邮件服务器返回的网页源代码，信件内容不是都在上面吗？这些信息同时被加密了吗？   纠正一点，这个世界上压根没有HTTPS这个协议。当我们提到HTTPS时，其实同时提到两个协议，一个是TLS，另外一个是HTTP，它们狼狈为奸抱团">
+<meta property="og:description" content="Raspbian 简介 Raspbian 是专门用于 ARM 卡片式计算机 Raspberry Pi® “树莓派”的操作系统。 Raspberry Pi® “树莓派”是 2012 年问世的 ARM 计算机，旨在为儿童和所有的计算机爱好者提供一套廉价的编程学习与硬件 DIY 平台。树莓派基于 ARM11，具有 1080P 高清视频解析能力，附带用于硬件开发的 GPIO 接口，使用Linux操作系统。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-09T07:31:32.270Z">
+<meta property="og:image" content="https://www.jlovek.cn/images/post_s2/2.png">
+<meta property="og:updated_time" content="2020-02-06T08:42:47.870Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTTPS Encryption Explained">
-<meta name="twitter:description" content="转载自微信公众号:车小胖谈网络 本文内容仅供学习交流，如有侵权立即删除。 QuestionⅠ 好比说邮箱，登录时进行HTTPS加密了，即使提交时保护了账户信息，但之后的请求，邮件服务器返回的网页源代码，信件内容不是都在上面吗？这些信息同时被加密了吗？   纠正一点，这个世界上压根没有HTTPS这个协议。当我们提到HTTPS时，其实同时提到两个协议，一个是TLS，另外一个是HTTP，它们狼狈为奸抱团">
+<meta name="twitter:title" content="树莓派系统基本设置">
+<meta name="twitter:description" content="Raspbian 简介 Raspbian 是专门用于 ARM 卡片式计算机 Raspberry Pi® “树莓派”的操作系统。 Raspberry Pi® “树莓派”是 2012 年问世的 ARM 计算机，旨在为儿童和所有的计算机爱好者提供一套廉价的编程学习与硬件 DIY 平台。树莓派基于 ARM11，具有 1080P 高清视频解析能力，附带用于硬件开发的 GPIO 接口，使用Linux操作系统。">
+<meta name="twitter:image" content="https://www.jlovek.cn/images/post_s2/2.png">
 
 
 
@@ -93,7 +95,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logoJ.png" alt="HTTPS Encryption Explained" height="28">
+                <img src="/images/logoJ.png" alt="树莓派系统基本设置" height="28">
             
             </a>
         </div>
@@ -157,17 +159,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-09T06:49:01.000Z">2020-02-09</time>
+                <time class="level-item has-text-grey" datetime="2019-02-05T12:46:00.000Z">2019-02-05</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Network/">Network</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Network/HTTP/">HTTP</a>
+                <a class="has-link-grey -link" href="/categories/Liunx/">Liunx</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Liunx/Raspbian/">Raspbian</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 读完 (大约 1168 个字)
+                    3 分钟 读完 (大约 503 个字)
                 </span>
                 
             </div>
@@ -175,135 +177,30 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                HTTPS Encryption Explained
+                树莓派系统基本设置
             
         </h1>
         
-<div class="card widget" id="toc">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                目录
-            </h3>
-            <ul class="menu-list"><li>
-        <a class="is-flex" href="#QuestionⅠ">
-        <span class="has-mr-6">1</span>
-        <span>QuestionⅠ</span>
-        </a></li><li>
-        <a class="is-flex" href="#QuestionⅡ">
-        <span class="has-mr-6">2</span>
-        <span>QuestionⅡ</span>
-        </a></li><li>
-        <a class="is-flex" href="#QuestionⅢ">
-        <span class="has-mr-6">3</span>
-        <span>QuestionⅢ</span>
-        </a></li></ul>
-        </div>
-    </div>
-</div>
-
         <div class="content">
-            <p><strong>转载自微信公众号:车小胖谈网络</strong></p>
-<p><strong>本文内容仅供学习交流，如有侵权立即删除。</strong></p>
-<h2 id="QuestionⅠ"><a href="#QuestionⅠ" class="headerlink" title="QuestionⅠ"></a>QuestionⅠ</h2><blockquote>
-<p>好比说邮箱，登录时进行HTTPS加密了，即使提交时保护了账户信息，但之后的请求，邮件服务器返回的网页源代码，信件内容不是都在上面吗？这些信息同时被加密了吗？</p>
-</blockquote>
+            <h2 id="Raspbian-简介"><a href="#Raspbian-简介" class="headerlink" title="Raspbian 简介"></a>Raspbian 简介</h2><hr>
+<p>Raspbian 是专门用于 ARM 卡片式计算机 Raspberry Pi® “树莓派”的操作系统。</p>
+<p>Raspberry Pi® “树莓派”是 2012 年问世的 ARM 计算机，旨在为儿童和所有的计算机爱好者提供一套廉价的编程学习与硬件 DIY 平台。树莓派基于 ARM11，具有 1080P 高清视频解析能力，附带用于硬件开发的 GPIO 接口，使用Linux操作系统。售价仅 $25~$35。</p>
+<p>Raspbian 系统是 Debian 7.0/wheezy 的定制版本。得益于 Debian从7.0/wheezy 开始引入的“带硬件浮点加速的ARM架构”(armhf)，Debian 7.0 在树莓派上的运行性能有了很大提升。Raspbian 默认使用 LXDE 桌面，内置 C 和 Python 编译器。</p>
+<p>Raspbian 是树莓派的开发与维护机构 The Raspbeery Pi Foundation “树莓派基金会”，推荐用于树莓派的首选系统。</p>
+<p>由于以下原因，Raspbian 需要单独组建软件仓库，而不能使用 Debian 的仓库：</p>
+<ul>
+<li>Debian下所有的软件包都需要用 armhf 重新编译。</li>
+<li>树莓派有部分特有的软件包，例如 BCM2835 CPU 的 GPIO 底层操作库。</li>
+<li>树莓派用户倾向于探索、尝试最新的软件。这与 Debian 软件源的策略完全不同。</li>
+</ul>
 <hr>
-<p>纠正一点，这个世界上压根没有<strong>HTTPS</strong>这个协议。当我们提到HTTPS时，其实同时提到两个协议，一个是<strong>TLS</strong>，另外一个是<strong>HTTP</strong>，它们狼狈为奸抱团取暖，共同为用户提供<strong>安全(Security)</strong>访问<strong>网页（HTTP</strong>）的服务，缩写为<strong>HTTPS</strong>。</p>
-<p>以大家从知乎网站拉取的网页为例，页面内容通常由N个IP报文组成，每一个IP报文的逻辑格式如下：</p>
-<table>
-<thead>
-<tr>
-<th>IP</th>
-<th>TCP</th>
-<th>TLS</th>
-<th style="text-align:center">HTTP</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td style="text-align:center">已加密</td>
-</tr>
-</tbody>
-</table>
-<p>“<strong>HTTP</strong>”完全加密，只有数据的发送方、接收方有解密的密钥可以解开，任何第三方都无法解密获取明文的HTTP内容，因为没有密钥信息。</p>
+<h2 id="切换到root用户"><a href="#切换到root用户" class="headerlink" title="切换到root用户"></a>切换到root用户</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su root</span><br></pre></td></tr></table></figure>
+<h3 id="修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表"><a href="#修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表" class="headerlink" title="修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表"></a>修改Raspbian的软件源以便提供更快的下载速度<a href="http://www.raspbian.org/RaspbianMirrors" target="_blank" rel="noopener">官方认证的源列表</a></h3><p><img src="/images/post_s2/2.png" alt=""><br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/apt/sources.list</span><br><span class="line">nano /etc/apt/sources.list.d/raspi.list</span><br><span class="line">apt-get update &amp;&amp; apt-get upgrade</span><br></pre></td></tr></table></figure></p>
+<p>把原来的地址行删除或者注释掉然后直接按这个格式扔进去就行</p>
+<p><font color="red">sources.list</font><br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb 软件源地址 stretch main non-free contrib rpi</span><br><span class="line">deb-src 软件源地址 stretch main non-free contrib rpi</span><br></pre></td></tr></table></figure></p>
+<p><font color="red">raspi.list</font><br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb 软件源地址 stretch main ui</span><br><span class="line">deb-src 软件源地址 stretch main ui</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<p>使用POP3/IMAP来接收邮件，安全邮件的接收格式如下：</p>
-<table>
-<thead>
-<tr>
-<th>IP</th>
-<th>TCP</th>
-<th>TLS</th>
-<th style="text-align:center">SMTP</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td style="text-align:center">已加密</td>
-</tr>
-</tbody>
-</table>
-<p>使用POP3/IMAP来接收邮件，安全邮件的接收格式如下：</p>
-<table>
-<thead>
-<tr>
-<th>IP</th>
-<th>TCP</th>
-<th>TLS</th>
-<th style="text-align:center">POP3/IMAP</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td style="text-align:center">已加密</td>
-</tr>
-</tbody>
-</table>
-<p>其实并不是，因为邮件传输有一个致命的弱点，即<strong>机会加密（Opportunistic Encryption）</strong>。</p>
-<p><strong>什么是机会加密？</strong></p>
-<p>客户端通常会使用“<strong>STARTTLS</strong>”来尝试建立<strong>TLS</strong>安全连接，如果一切正常，邮件内容完全加密。</p>
-<p>如果客户端尝试多次没有成功建立安全连接，客户端就会放弃使用TLS，而<strong>采用不加密的方式传输邮件</strong>，逻辑格式如下：</p>
-<table>
-<thead>
-<tr>
-<th>IP</th>
-<th>TCP</th>
-<th style="text-align:center">SMTP/POP3/IMAP</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td style="text-align:center">无加密</td>
-</tr>
-</tbody>
-</table>
-<p>那么邮件的明文内容在传输过程中就被第三方窃取了，只要第三方可以捕获流量。</p>
-<p><strong>第三方为了不让通信双方建立TLS连接，通常在中间故意捣乱（丢包），TLS建立不起来，从而退而求其次选择明文传输。</strong></p>
-<h2 id="QuestionⅡ"><a href="#QuestionⅡ" class="headerlink" title="QuestionⅡ"></a>QuestionⅡ</h2><blockquote>
-<p>我访问了某https网站 ，运营商/HK/GFW能查或不能查到我的哪些信息？比如访问请求，提交表单的内容等等……</p>
-</blockquote>
-<hr>
-<p>凡是被HTTP包裹的内容全部是加密的、安全的<strong>。但运营商可以监控你的明文传输的DNS查询报文、以及TLS协商阶段的明文报文，这些明文信息（</strong>网站域名、SNI、数字证书Subject / Alternative Name**）会泄露你在访问哪些网站，仅此而已，更多的信息没有了。</p>
-<p>以上的假设是运营商或其它第三方没有使用“<strong>中间人攻击</strong>”，如果他们伪造了一个你要访问网站的证书，但是却被你的浏览器验证合法，那么这就是一个成功的“中间人攻击”。你访问网站的所有信息，包括HTTP包裹的表单，都是可以被他们解密的，更不要说你的<strong>登录密码、Session ID、Access Token、Authentication Cookie</strong>了。</p>
-<h2 id="QuestionⅢ"><a href="#QuestionⅢ" class="headerlink" title="QuestionⅢ"></a>QuestionⅢ</h2><blockquote>
-<p>HK劫持到SESSIONID就能轻易的绕过登录，用HTTPS能否起到保护作用？</p>
-</blockquote>
-<hr>
-<p><strong>SESSION ID、Access Token、AuthenticationCookie</strong>等同于用户密码，这样我们就可以不要每次拉取一个页面，就输入一次密码，太繁琐了。有了以上证明用户身份的权限信息，是可以绕过登录过程，而无需输入密码。</p>
-<p>可是以上信息都被<strong>TLS</strong>加密了，只有客户端、服务器才可以解密，其它第三方是无法获取的。要想获取这些机密信息，必须使用上文提到的中间人攻击，将TLS会话成功劫持，可以得到任何感兴趣的权限信息。</p>
-<p>而要进行一次成功的中间人攻击，目前最最方便的手段就是“<strong>伪造一个在浏览器看来合法的证书</strong>”，这听起来有点荒唐，但真实世界就是这个样子！造成这一荒唐局面的是全球通用的<strong>公钥认证系统（PKI）的系统性缺陷。</strong></p>
+<h3 id="中文支持及中文输入法"><a href="#中文支持及中文输入法" class="headerlink" title="中文支持及中文输入法"></a>中文支持及中文输入法</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install -y ttf-wqy-zenhei</span><br><span class="line">apt-get install -y scim-pinyin</span><br></pre></td></tr></table></figure>
 
             <div class="level is-size-7 has-text-grey">
     <div class="level-left">
@@ -320,7 +217,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Reproduced/">Reproduced</a>
+                    <a class="has-link-grey -link" href="/tags/Liunx/">Liunx</a>, <a class="has-link-grey -link" href="/tags/Raspberry-Pi/">Raspberry-Pi</a>
                 </div>
             </div>
         </div>
@@ -371,16 +268,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/06/06/BeyondProd/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/02/05/Raspberry-Pi1/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">BeyondProd</span>
+                <span class="level-item">树莓派系统基本设置</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2020/02/06/Everything-is-distributed/">
-                <span class="level-item">Everything is distributed</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/02/02/Raspberry-Pi/">
+                <span class="level-item">树莓派系统安装</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -423,7 +320,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logoJ.png" alt="HTTPS Encryption Explained" height="28">
+                    <img src="/images/logoJ.png" alt="树莓派系统基本设置" height="28">
                 
                 </a>
                 <p class="is-size-7">

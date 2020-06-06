@@ -11,23 +11,23 @@
 
 
 
-    <meta name="description" content="0X00    硬件准备      Raspberry Pi3 一个   TF储存卡 推荐16GB的高速卡   路由器 一台   电脑 最好能连wifi       软件准备      SD Card Formatter 点击下载(Windows版本)   Win32 Disk Imager 点击进入下载链接   树莓派镜像 点击进入下载链接    推荐这个带软件集成的桌面版本">
+    <meta name="description" content="0X00    硬件准备      Raspberry Pi3 一个   TF储存卡 推荐16GB的高速卡   路由器 一台   电脑 已连接到路由器       软件准备      SD Card Formatter 点击下载(Windows版本)   Win32 Disk Imager 点击进入下载链接   树莓派镜像 点击进入下载链接    推荐这个带软件集成的桌面版本">
 <meta name="keywords" content="Raspberry-Pi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="树莓派系统安装">
 <meta property="og:url" content="https://www.jlovek.cn/2019/02/02/Raspberry-Pi/index.html">
 <meta property="og:site_name" content="J0kkeR">
-<meta property="og:description" content="0X00    硬件准备      Raspberry Pi3 一个   TF储存卡 推荐16GB的高速卡   路由器 一台   电脑 最好能连wifi       软件准备      SD Card Formatter 点击下载(Windows版本)   Win32 Disk Imager 点击进入下载链接   树莓派镜像 点击进入下载链接    推荐这个带软件集成的桌面版本">
+<meta property="og:description" content="0X00    硬件准备      Raspberry Pi3 一个   TF储存卡 推荐16GB的高速卡   路由器 一台   电脑 已连接到路由器       软件准备      SD Card Formatter 点击下载(Windows版本)   Win32 Disk Imager 点击进入下载链接   树莓派镜像 点击进入下载链接    推荐这个带软件集成的桌面版本">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://www.jlovek.cn/images/post_s1/1.png">
-<meta property="og:image" content="https://www.jlovek.cn/images/post_s1/2.png">
-<meta property="og:image" content="https://www.jlovek.cn/images/post_s1/3.png">
-<meta property="og:image" content="https://www.jlovek.cn/images/post_s1/4.png">
+<meta property="og:image" content="https://www.jlovek.cn/2019/02/02/Raspberry-Pi/version.png">
+<meta property="og:image" content="https://www.jlovek.cn/2019/02/02/Raspberry-Pi/ip.png">
+<meta property="og:image" content="https://www.jlovek.cn/2019/02/02/Raspberry-Pi/ssh.png">
+<meta property="og:image" content="https://www.jlovek.cn/2019/02/02/Raspberry-Pi/name.png">
 <meta property="og:updated_time" content="2019-02-05T10:37:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="树莓派系统安装">
-<meta name="twitter:description" content="0X00    硬件准备      Raspberry Pi3 一个   TF储存卡 推荐16GB的高速卡   路由器 一台   电脑 最好能连wifi       软件准备      SD Card Formatter 点击下载(Windows版本)   Win32 Disk Imager 点击进入下载链接   树莓派镜像 点击进入下载链接    推荐这个带软件集成的桌面版本">
-<meta name="twitter:image" content="https://www.jlovek.cn/images/post_s1/1.png">
+<meta name="twitter:description" content="0X00    硬件准备      Raspberry Pi3 一个   TF储存卡 推荐16GB的高速卡   路由器 一台   电脑 已连接到路由器       软件准备      SD Card Formatter 点击下载(Windows版本)   Win32 Disk Imager 点击进入下载链接   树莓派镜像 点击进入下载链接    推荐这个带软件集成的桌面版本">
+<meta name="twitter:image" content="https://www.jlovek.cn/2019/02/02/Raspberry-Pi/version.png">
 
 
 
@@ -98,7 +98,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo4.png" alt="树莓派系统安装" height="28">
+                <img src="/images/logoJ.png" alt="树莓派系统安装" height="28">
             
             </a>
         </div>
@@ -172,7 +172,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 566 个字)
+                    4 分钟 读完 (大约 560 个字)
                 </span>
                 
             </div>
@@ -243,7 +243,7 @@
 </tr>
 <tr>
 <td style="text-align:left">电脑</td>
-<td style="text-align:left">最好能连wifi</td>
+<td style="text-align:left">已连接到路由器</td>
 </tr>
 </tbody>
 </table>
@@ -269,7 +269,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>推荐这个带软件集成的桌面版本</strong><br><img src="/images/post_s1/1.png" alt=""><br><a id="more"></a></p>
+<p><strong>推荐这个带软件集成的桌面版本</strong><br><img src="version.png" alt=""><br><a id="more"></a></p>
 <hr>
 <h1 id="0X01"><a href="#0X01" class="headerlink" title="0X01"></a>0X01</h1><hr>
 <blockquote>
@@ -279,7 +279,8 @@
 </blockquote>
 </blockquote>
 <h2 id="设置无线网连接"><a href="#设置无线网连接" class="headerlink" title="设置无线网连接"></a>设置无线网连接</h2><p>由于新版本的Raspbian系统镜像默认禁用了SSH服务所以我们首先要在TF卡分区中创建<font color="red">ssh(空文件)</font>以便开启SSH远程并且新建<font color="red">wpa_supplicant.conf</font>按照以下的提示写入<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">country=CN</span><br><span class="line">ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev</span><br><span class="line">update_config=1</span><br><span class="line"></span><br><span class="line">// 没有密码</span><br><span class="line">network=&#123;</span><br><span class="line">ssid=&quot;ssid&quot;</span><br><span class="line">key_mgmt=NONE</span><br><span class="line">priority=1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// WEP加密</span><br><span class="line">network=&#123;</span><br><span class="line">ssid=&quot;你的无线网络名称（ssid）&quot;</span><br><span class="line">key_mgmt=NONE</span><br><span class="line">wep_key0=&quot;wifi密码&quot;</span><br><span class="line">priority=1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// WPA/WPA2加密</span><br><span class="line">network=&#123;</span><br><span class="line">ssid=&quot;你的无线网络名称（ssid）&quot;</span><br><span class="line">key_mgmt=WPA-PSK</span><br><span class="line">psk=&quot;wifi密码&quot;</span><br><span class="line">priority=1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="开启强制HDMI输出"><a href="#开启强制HDMI输出" class="headerlink" title="开启强制HDMI输出"></a>开启强制HDMI输出</h2><p>在TF卡分区中打开<font color="red">config.txt</font><br>修改以下参数：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hdmi_safe=1</span><br><span class="line">config_hdmi_boost=4</span><br><span class="line">hdmi_ignore_edid=0xa5000080</span><br><span class="line">hdmi_group=2</span><br><span class="line">hdmi_mode=82</span><br></pre></td></tr></table></figure></p>
+<h2 id="开启强制HDMI输出"><a href="#开启强制HDMI输出" class="headerlink" title="开启强制HDMI输出"></a>开启强制HDMI输出</h2><p>在TF卡分区中打开<font color="red">config.txt</font><br>修改以下参数：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hdmi_safe=1</span><br><span class="line">config_hdmi_boost=4</span><br><span class="line">hdmi_ignore_edid=0xa5000080</span><br><span class="line">hdmi_group=2</span><br><span class="line">hdmi_mode=82</span><br></pre></td></tr></table></figure>
 <table>
 <thead>
 <tr>
@@ -332,7 +333,7 @@
 </table>
 <hr>
 <h1 id="0X02"><a href="#0X02" class="headerlink" title="0X02"></a>0X02</h1><hr>
-<h2 id="通电测试"><a href="#通电测试" class="headerlink" title="通电测试"></a>通电测试</h2><p>以上修改完毕后把TF卡插入树莓派的TF卡插槽内，接上支持输出5V-2A的充电器，正常情况下稍过一会就可以直接在路由器的管理界面看到树莓派的设备。接着我们直接用ssh连接，这里我用的是<a href="https://xshell.en.softonic.com/" target="_blank" rel="noopener">Xshell</a><br><img src="/images/post_s1/2.png" alt=""><br>点击新建在主机栏填入树莓派的IP地址，端口默认为22<br><img src="/images/post_s1/3.png" alt=""><br>用户名和密码默认为：<br>pi<br>raspberry<br><img src="/images/post_s1/4.png" alt=""><br>连接成功后，可以直接看到树莓派命令行界面。</p>
+<h2 id="通电测试"><a href="#通电测试" class="headerlink" title="通电测试"></a>通电测试</h2><p>以上修改完毕后把TF卡插入树莓派的TF卡插槽内，接上支持输出5V-2A的充电器，正常情况下稍过一会就可以直接在路由器的管理界面看到树莓派的设备。接着我们直接用ssh连接，这里我用的是<a href="https://xshell.en.softonic.com/" target="_blank" rel="noopener">Xshell</a><br><img src="ip.png" alt=""><br>点击新建在主机栏填入树莓派的IP地址，端口默认为22<br><img src="ssh.png" alt=""><br>用户名和密码默认为：<br>pi<br>raspberry<br><img src="name.png" alt=""><br>连接成功后，可以直接看到树莓派命令行界面。</p>
 <hr>
 
             <div class="level is-size-7 has-text-grey">
@@ -377,7 +378,7 @@
         <i class="fab fa-alipay"></i>
     </span>
     <span>支付宝</span>
-    <div class="qrcode"><img src="/images/dashang.jpg" alt="支付宝"></div>
+    <div class="qrcode"><img src="/images/zfb.jpg" alt="支付宝"></div>
 </a>
 
                 
@@ -387,7 +388,7 @@
         <i class="fab fa-weixin"></i>
     </span>
     <span>微信</span>
-    <div class="qrcode"><img src="/images/dashang2.jpg" alt="微信"></div>
+    <div class="qrcode"><img src="/images/wx.jpg" alt="微信"></div>
 </a>
 
                 
@@ -401,7 +402,7 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/02/05/Raspberry-Pi1/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/02/05/Raspberry-Pi1_Config/">
                 <i class="level-item fas fa-chevron-left"></i>
                 <span class="level-item">树莓派系统基本设置</span>
             </a>
@@ -446,7 +447,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo4.png" alt="树莓派系统安装" height="28">
+                    <img src="/images/logoJ.png" alt="树莓派系统安装" height="28">
                 
                 </a>
                 <p class="is-size-7">

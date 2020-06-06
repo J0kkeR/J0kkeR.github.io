@@ -19,13 +19,13 @@
 <meta property="og:site_name" content="J0kkeR">
 <meta property="og:description" content="转载自: https://arthurchiao.github.io/ 本文内容仅供学习交流，如有侵权立即删除。 译者序本文翻译自 2019 年 Google 的一篇白皮书 BeyondProd: A new approach to cloud-native security， 介绍了其最新的云原生安全模型。 Google 虽有官方中文版，但机器翻译痕迹略重，相比原文反而增加阅读障碍；故有此拙译">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://www.jlovek.cn/images/post_s3/accessing-data.png">
-<meta property="og:image" content="https://www.jlovek.cn/images/post_s3/code-change-rollout.png">
-<meta property="og:updated_time" content="2020-06-06T07:16:50.743Z">
+<meta property="og:image" content="https://www.jlovek.cn/2020/06/06/BeyondProd/accessing-data.png">
+<meta property="og:image" content="https://www.jlovek.cn/2020/06/06/BeyondProd/code-change-rollout.png">
+<meta property="og:updated_time" content="2020-06-06T07:56:53.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BeyondProd">
 <meta name="twitter:description" content="转载自: https://arthurchiao.github.io/ 本文内容仅供学习交流，如有侵权立即删除。 译者序本文翻译自 2019 年 Google 的一篇白皮书 BeyondProd: A new approach to cloud-native security， 介绍了其最新的云原生安全模型。 Google 虽有官方中文版，但机器翻译痕迹略重，相比原文反而增加阅读障碍；故有此拙译">
-<meta name="twitter:image" content="https://www.jlovek.cn/images/post_s3/accessing-data.png">
+<meta name="twitter:image" content="https://www.jlovek.cn/2020/06/06/BeyondProd/accessing-data.png">
 
 
 
@@ -96,7 +96,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo4.png" alt="BeyondProd" height="28">
+                <img src="/images/logoJ.png" alt="BeyondProd" height="28">
             
             </a>
         </div>
@@ -170,7 +170,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 小时 读完 (大约 11122 个字)
+                    1 小时 读完 (大约 11116 个字)
                 </span>
                 
             </div>
@@ -586,7 +586,7 @@
 <li>跟踪一次代码变更，从开发直至发布到生产环境</li>
 </ol>
 <p>需要说明的是，这里列出的技术并不是都会用于 Google 基础设施中的每个部分，具体 用到哪些取决于服务和 workloads。</p>
-<h3 id="例子：访问用户数据流程"><a href="#例子：访问用户数据流程" class="headerlink" title="例子：访问用户数据流程"></a>例子：访问用户数据流程</h3><p><img src="/images/post_s3/accessing-data.png" alt=""></p>
+<h3 id="例子：访问用户数据流程"><a href="#例子：访问用户数据流程" class="headerlink" title="例子：访问用户数据流程"></a>例子：访问用户数据流程</h3><p><img src="accessing-data.png" alt=""></p>
 <p>Fig 1. Google 云原生架构安全控制 —— 访问用户数据</p>
 <p>如图 1 所示，</p>
 <ol>
@@ -611,7 +611,7 @@
 <li><strong>Borgmaster [5] 基于微服务的身份向 workloads 授予 ALTS 微服务凭证</strong>，如图 1 所示。</li>
 <li>机器级别的 ALTS凭证成为了<strong>提供微服务凭证的安全通道</strong>（secure channel for provisioning microservice credentials），因此实际上只有成功地通过了 HINT 检查 的机器才能运行微服务 workloads。</li>
 </ul>
-<h3 id="例子：代码变更流程"><a href="#例子：代码变更流程" class="headerlink" title="例子：代码变更流程"></a>例子：代码变更流程</h3><p><img src="/images/post_s3/code-change-rollout.png" alt=""></p>
+<h3 id="例子：代码变更流程"><a href="#例子：代码变更流程" class="headerlink" title="例子：代码变更流程"></a>例子：代码变更流程</h3><p><img src="code-change-rollout.png" alt=""></p>
 <p>Fig 2. Google 云原生架构安全控制 —— 代码变更</p>
 <p>如图 2 所示，</p>
 <ol>
@@ -709,7 +709,7 @@
         <i class="fab fa-alipay"></i>
     </span>
     <span>支付宝</span>
-    <div class="qrcode"><img src="/images/dashang.jpg" alt="支付宝"></div>
+    <div class="qrcode"><img src="/images/zfb.jpg" alt="支付宝"></div>
 </a>
 
                 
@@ -719,7 +719,7 @@
         <i class="fab fa-weixin"></i>
     </span>
     <span>微信</span>
-    <div class="qrcode"><img src="/images/dashang2.jpg" alt="微信"></div>
+    <div class="qrcode"><img src="/images/wx.jpg" alt="微信"></div>
 </a>
 
                 
@@ -778,7 +778,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo4.png" alt="BeyondProd" height="28">
+                    <img src="/images/logoJ.png" alt="BeyondProd" height="28">
                 
                 </a>
                 <p class="is-size-7">
