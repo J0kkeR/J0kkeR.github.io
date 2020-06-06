@@ -153,17 +153,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-06T08:18:46.000Z">2020-02-06</time>
+                <time class="level-item has-text-grey" datetime="2020-02-09T06:49:01.000Z">2020-02-09</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Network/">Network</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Network/Architecture/">Architecture</a>
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Network/HTTP/">HTTP</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    21 分钟 读完 (大约 3085 个字)
+                    8 分钟 读完 (大约 1168 个字)
                 </span>
                 
             </div>
@@ -171,7 +171,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/02/06/Everything-is-distributed/">Everything is distributed</a>
+                <a class="has-link-black-ter" href="/2020/02/09/HTTPS-encryption-explained/">HTTPS Encryption Explained</a>
             
         </h1>
         
@@ -182,39 +182,50 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#译者序">
+        <a class="is-flex" href="#QuestionⅠ">
         <span class="has-mr-6">1</span>
-        <span>译者序</span>
+        <span>QuestionⅠ</span>
         </a></li><li>
-        <a class="is-flex" href="#拥抱故障">
+        <a class="is-flex" href="#QuestionⅡ">
         <span class="has-mr-6">2</span>
-        <span>拥抱故障</span>
+        <span>QuestionⅡ</span>
         </a></li><li>
-        <a class="is-flex" href="#分布式设计，本地化开发">
+        <a class="is-flex" href="#QuestionⅢ">
         <span class="has-mr-6">3</span>
-        <span>分布式设计，本地化开发</span>
-        </a></li><li>
-        <a class="is-flex" href="#数据是分布式系统的通用语言">
-        <span class="has-mr-6">4</span>
-        <span>数据是分布式系统的通用语言</span>
-        </a></li><li>
-        <a class="is-flex" href="#复杂系统中人的角色">
-        <span class="has-mr-6">5</span>
-        <span>复杂系统中人的角色</span>
+        <span>QuestionⅢ</span>
         </a></li></ul>
         </div>
     </div>
 </div>
 
         <div class="content">
-            <p><strong>转载自: <a href="https://arthurchiao.github.io/" target="_blank" rel="noopener">https://arthurchiao.github.io/</a></strong></p>
+            <p><strong>转载自微信公众号:车小胖谈网络</strong></p>
 <p><strong>本文内容仅供学习交流，如有侵权立即删除。</strong></p>
-<h1 id="译者序"><a href="#译者序" class="headerlink" title="译者序"></a>译者序</h1><p>本文内容来自 2015 年的一本小册子 <strong><em>Everything is distributed</em></strong>（下载 <a href="https://vikaskyadav.github.io/Free-OReilly-Books/" target="_blank" rel="noopener">Free-OReilly-Books</a>）， 其中集合了 5篇与性能和运维相关的文章，本文翻译其中第二篇 <a href="https://www.oreilly.com/ideas/everything-is-distributed" target="_blank" rel="noopener">Everything is distributed</a>。这篇文章思考有一定深度，但部分观点恐怕失之颇偏，比如作者认为分布式系统中的故障没 有根本原因（There is no root cause）、查找 root cause 多半是徒劳等等。</p>
-<p><strong>由于译者水平有限，本文不免存在遗漏或错误之处。如有疑问，请查阅原文。</strong></p>
-<blockquote>
-<p>人们应该感到惊讶的并不是每天都有这么多故障，而是每天只有这么少故障。你不应该惊 讶于自己的系统偶尔会崩溃，而应该惊讶于它竟然能长时间不出错地运行。</p>
-<p>— Richard Cook</p>
+<h2 id="QuestionⅠ"><a href="#QuestionⅠ" class="headerlink" title="QuestionⅠ"></a>QuestionⅠ</h2><blockquote>
+<p>好比说邮箱，登录时进行HTTPS加密了，即使提交时保护了账户信息，但之后的请求，邮件服务器返回的网页源代码，信件内容不是都在上面吗？这些信息同时被加密了吗？</p>
 </blockquote>
+<hr>
+<p>纠正一点，这个世界上压根没有<strong>HTTPS</strong>这个协议。当我们提到HTTPS时，其实同时提到两个协议，一个是<strong>TLS</strong>，另外一个是<strong>HTTP</strong>，它们狼狈为奸抱团取暖，共同为用户提供<strong>安全(Security)</strong>访问<strong>网页（HTTP</strong>）的服务，缩写为<strong>HTTPS</strong>。</p>
+<p>以大家从知乎网站拉取的网页为例，页面内容通常由N个IP报文组成，每一个IP报文的逻辑格式如下：</p>
+<table>
+<thead>
+<tr>
+<th>IP</th>
+<th>TCP</th>
+<th>TLS</th>
+<th style="text-align:center">HTTP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center">已加密</td>
+</tr>
+</tbody>
+</table>
+<p>“<strong>HTTP</strong>”完全加密，只有数据的发送方、接收方有解密的密钥可以解开，任何第三方都无法解密获取明文的HTTP内容，因为没有密钥信息。</p>
             <div class="level is-size-7 has-text-grey">
     <div class="level-left">
         <i class="far fa-eye"></i>
@@ -230,7 +241,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/02/06/Everything-is-distributed/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/2020/02/09/HTTPS-encryption-explained/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -267,6 +278,8 @@
             <li><a class="pagination-link has-text-black-ter" href="/page/3/">3</a></li>
             
             <li><a class="pagination-link has-text-black-ter" href="/page/4/">4</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/5/">5</a></li>
             
         </ul>
     </nav>
@@ -316,7 +329,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        4
+                        5
                     </p>
                 </div>
             </div>
@@ -326,7 +339,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        7
+                        8
                     </p>
                 </div>
             </div>
@@ -424,7 +437,7 @@
                 <span class="level-item">Network</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">3</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Network/Architecture/">
@@ -438,6 +451,14 @@
         <a class="level is-marginless" href="/categories/Network/HTTP/">
             <span class="level-start">
                 <span class="level-item">HTTP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Network/security/">
+            <span class="level-start">
+                <span class="level-item">security</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -457,7 +478,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Liunx/" style="font-size: 10px;">Liunx</a> <a href="/tags/Raspberry-Pi/" style="font-size: 20px;">Raspberry-Pi</a> <a href="/tags/Reproduced/" style="font-size: 20px;">Reproduced</a>
+        <a href="/tags/Liunx/" style="font-size: 10px;">Liunx</a> <a href="/tags/Raspberry-Pi/" style="font-size: 15px;">Raspberry-Pi</a> <a href="/tags/Reproduced/" style="font-size: 20px;">Reproduced</a>
     </div>
 </div>
 
@@ -468,6 +489,19 @@
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-06T07:04:01.000Z">2020-06-06</time></div>
+                    <a href="/2020/06/06/BeyondProd/" class="has-link-black-ter is-size-6">BeyondProd</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/security/">security</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -534,6 +568,17 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/02/">
                 <span class="level-start">
                     <span class="level-item">二月 2020</span>
@@ -585,7 +630,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Reproduced/">
                         <span class="tag">Reproduced</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -612,7 +657,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Liunx/" style="font-size: 10px;">Liunx</a> <a href="/tags/Raspberry-Pi/" style="font-size: 20px;">Raspberry-Pi</a> <a href="/tags/Reproduced/" style="font-size: 20px;">Reproduced</a>
+        <a href="/tags/Liunx/" style="font-size: 10px;">Liunx</a> <a href="/tags/Raspberry-Pi/" style="font-size: 15px;">Raspberry-Pi</a> <a href="/tags/Reproduced/" style="font-size: 20px;">Reproduced</a>
     </div>
 </div>
 
@@ -623,6 +668,19 @@
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-06T07:04:01.000Z">2020-06-06</time></div>
+                    <a href="/2020/06/06/BeyondProd/" class="has-link-black-ter is-size-6">BeyondProd</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/security/">security</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -689,6 +747,17 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/02/">
                 <span class="level-start">
                     <span class="level-item">二月 2020</span>
@@ -740,7 +809,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Reproduced/">
                         <span class="tag">Reproduced</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 

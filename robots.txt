@@ -9,5 +9,5 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: http://www.zhoulinrui.com/sitemap.xml
-Sitemap: http://www.zhoulinrui.com/baidusitemap.xml
+Sitemap: http://www.jlovek.cn/sitemap.xml
+Sitemap: http://www.jlovek.cn/baidusitemap.xml
