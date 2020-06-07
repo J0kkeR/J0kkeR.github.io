@@ -21,7 +21,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.jlovek.cn/2020/06/06/BeyondProd/accessing-data.png">
 <meta property="og:image" content="https://www.jlovek.cn/2020/06/06/BeyondProd/code-change-rollout.png">
-<meta property="og:updated_time" content="2020-06-06T07:56:53.460Z">
+<meta property="og:updated_time" content="2020-06-07T14:18:32.719Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BeyondProd">
 <meta name="twitter:description" content="转载自: https://arthurchiao.github.io/ 本文内容仅供学习交流，如有侵权立即删除。 译者序本文翻译自 2019 年 Google 的一篇白皮书 BeyondProd: A new approach to cloud-native security， 介绍了其最新的云原生安全模型。 Google 虽有官方中文版，但机器翻译痕迹略重，相比原文反而增加阅读障碍；故有此拙译">
@@ -170,7 +170,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 小时 读完 (大约 11116 个字)
+                    1 小时 读完 (大约 11117 个字)
                 </span>
                 
             </div>
@@ -295,7 +295,7 @@
 <ul>
 <li><p><strong>微服务</strong>（microservice）：微服务将一个应用需要执行的多个<strong>独立任务</strong>（ individual tasks）拆分为<strong>单独的服务</strong>（separate services），每个服务都有自己 的 API、独立开发、维护、发布、扩容和管理配额。</p>
 <p>在更加现代的架构中，应用（例如一个网站）是以一系列微服务（a collection of microservices）的形式而非单个单体服务（single monolithic service）的方式运行的。</p>
-<p>微服务是独立的、模块化的、动态的、生命周期较短的（ephemeral）。微服务能够分布 到不同的机器上，不同的集群中，甚至不同的云上。</p>
+<p>微服务是独立的、模块化的、动态的、生命周期较短的（ephemeral）。微服务能够分布到不同的机器上，不同的集群中，甚至不同的云上。</p>
 </li>
 <li><p><strong>负载</strong>（workload）：一个 workload 就是<strong>应用完成的一个特定任务</strong>（a unique task that an application completes）。</p>
 <p>在微服务架构中，<strong>一个 workload 可能是一个或多个微服务</strong>。</p>
@@ -305,7 +305,7 @@
 <li><p><strong>服务身份</strong>（service identity）：在基础设施中，微服务之间使用服务身份做认证。</p>
 </li>
 <li><p><strong>服务网格</strong>（service mesh）：service mesh 是一个服务之间通信（service-to-service communication）的基础设施层（infrastructure layer），能够控制流量、应用策略， 提供中心式的服务调用监控。</p>
-<p>微服务引入 service mesh 之后能够降低每个服务的开发负担，因为它们不再需要自己费 力地实现一遍这些功能；另外，service mesh 还使得微服务之间的管理更加简单，也更 加集中。</p>
+<p>微服务引入 service mesh 之后能够降低每个服务的开发负担，因为它们不再需要自己费力地实现一遍这些功能；另外，service mesh 还使得微服务之间的管理更加简单，也更加集中。</p>
 </li>
 </ul>
 <h1 id="首席信息官必读（CIO-level-summary）"><a href="#首席信息官必读（CIO-level-summary）" class="headerlink" title="首席信息官必读（CIO-level summary）"></a>首席信息官必读（CIO-level summary）</h1><ul>
@@ -325,7 +325,7 @@
 </ul>
 </li>
 <li><p>从传统安全模型<strong>迁移到云原生安全模型，主要涉及两方面改动：基础设施和开发过程</strong> （infrastructure and development process）</p>
-<p>将<strong>共享的组件</strong>（components）打造成一个<strong>共享的交换网格</strong>（fabric，在数据中心 网络中通常表示全连接的交换矩阵，译者注），用这个 fabric 将所有微服务的通信连接 起来（enveloping and connecting），<strong>即所谓的 service mesh</strong>，会使得发布变更（roll out changes）和获得一致的安全性（consistent security across services）更加容易。</p>
+<p>将<strong>共享的组件</strong>（components）打造成一个<strong>共享的交换网格</strong>（fabric，在数据中心 网络中通常表示全连接的交换矩阵，译者注），用这个 fabric 将所有微服务的通信连接起来（enveloping and connecting），<strong>即所谓的 service mesh</strong>，会使得发布变更（roll out changes）和获得一致的安全性（consistent security across services）更加容易。</p>
 </li>
 </ul>
 <h1 id="设计动机（Motivation）"><a href="#设计动机（Motivation）" class="headerlink" title="设计动机（Motivation）"></a>设计动机（Motivation）</h1><p>出于下面几个原因：</p>
@@ -336,13 +336,13 @@
 </ul>
 <p>我们迁移到了容器和容器编排平台。</p>
 <p>除此之外，我们迁移到容器化的基础设施还有一个初衷：<strong>将安全控制和架构进行对齐</strong> （align our security controls with our architecture）。</p>
-<p>我们已经很清楚地知道，基于边界的安全模型（perimeter-based security model）并非足 够安全。攻击者一旦攻破了边界，就能够在网络内部任意游走。<strong>我们意识到需要在基础设 施中引入更强的安全控制，但也希望这些控制对 Google 开发者是友好的</strong>：他们能够轻 松地编写和部署安全的应用，而不用亲自实现安全特性。</p>
+<p>我们已经很清楚地知道，基于边界的安全模型（perimeter-based security model）并非足 够安全。攻击者一旦攻破了边界，就能够在网络内部任意游走。<strong>我们意识到需要在基础设施中引入更强的安全控制，但也希望这些控制对 Google 开发者是友好的</strong>：他们能够轻 松地编写和部署安全的应用，而不用亲自实现安全特性。</p>
 <p>从单体应用迁移到容器化的分布式微服务，并基于容器编排系统来编排这些服务，带来了两 方面好处，并且这两方面相互交织：</p>
 <ul>
 <li>管理更简单</li>
 <li>可扩展性更好</li>
 </ul>
-<p>这种<strong>云原生架构需要一种不同的安全模型，以及不同的工具来保护应用部署</strong>，以便与微 服务的管理和扩展性收益相匹配。</p>
+<p>这种<strong>云原生架构需要一种不同的安全模型，以及不同的工具来保护应用部署</strong>，以便与微服务的管理和扩展性收益相匹配。</p>
 <p><strong>本文描述 Google 是如何实现云原生安全（即 BeyondProd）的</strong>，包括：</p>
 <ul>
 <li>向云原生的转变，对安全意味着什么（what the change to cloud-native means for security）</li>
@@ -351,14 +351,14 @@
 <li>一些指导原则，基于这些原则你也能构建一套类似的安全控制</li>
 </ul>
 <h1 id="Google-的云原生安全"><a href="#Google-的云原生安全" class="headerlink" title="Google 的云原生安全"></a>Google 的云原生安全</h1><h2 id="容器化的微服务"><a href="#容器化的微服务" class="headerlink" title="容器化的微服务"></a>容器化的微服务</h2><p>Google 在初期就有意识地用价格低廉的普通服务器而非昂贵的高可用硬件构建自己的数据 中心。我们的<strong>可靠性指导哲学</strong>是 —— 并且将一直是：<strong>允许系统的任何部分发生故障 ，但不能对用户可见的服务产生影响</strong>。</p>
-<p>达到这个可用性目标就需要部署冗余实例，这样单个实例挂掉时服务仍然可用。<strong>这种哲学 的成果之一是：我们开发了容器、微服务和容器编排系统</strong>，以便可扩展地管理这些高冗 余和分布式系统的部署。</p>
-<p>容器化的基础设施意味着，每个 workload 都自成一体，作为一组容器部署，这些容器具有 不可变（immutable）、可移动（moveable）、可调度（scheduleable）的特点。为了管理 这些容器，我们开发了一个称为 <a href="https://research.google.com/pubs/pub43438.html?hl=es" target="_blank" rel="noopener">Borg</a> [1] 的容器编排系统，现在我们仍然在使用，每周部署几十亿个容器。</p>
-<p>容器的部署方式使得 workload 二进制文件打包（bin pack）和在机器间重调度（ reschedule across machines）更方便。微服务使得开发和调试应用的某个部分更方便。这 两者结合起来，微服务和容器使得 workloads 能够拆分为更小的、更易维护和发现的单元。</p>
+<p>达到这个可用性目标就需要部署冗余实例，这样单个实例挂掉时服务仍然可用。<strong>这种哲学的成果之一是：我们开发了容器、微服务和容器编排系统</strong>，以便可扩展地管理这些高冗 余和分布式系统的部署。</p>
+<p>容器化的基础设施意味着，每个 workload 都自成一体，作为一组容器部署，这些容器具有 不可变（immutable）、可移动（moveable）、可调度（scheduleable）的特点。为了管理这些容器，我们开发了一个称为 <a href="https://research.google.com/pubs/pub43438.html?hl=es" target="_blank" rel="noopener">Borg</a> [1] 的容器编排系统，现在我们仍然在使用，每周部署几十亿个容器。</p>
+<p>容器的部署方式使得 workload 二进制文件打包（bin pack）和在机器间重调度（ reschedule across machines）更方便。微服务使得开发和调试应用的某个部分更方便。这两者结合起来，微服务和容器使得 workloads 能够拆分为更小的、更易维护和发现的单元。</p>
 <p><strong>迁移到基于容器化基础设施的微服务架构</strong>， 即如今所谓的<strong>向 <a href="https://github.com/cncf/toc/blob/master/DEFINITION.md" target="_blank" rel="noopener">“云原生”</a> 转变</strong>（going “cloud-native”）。 服务都运行在容器内，由 Borg 部署。这种架构能根据 workload 大小自动扩缩容：如果某 个 workload 请求量很大，可能就会扩出多个实例来分担请求。</p>
-<p><strong>Google 做得比较出色的一点是：安全作为重要组成部分，在历次架构演进过程中都会考 虑到</strong>。比如我们已经使用多年的保护基础设施安全的 BeyondCorp 模型，以及近期的云原 生安全（cloud-native security）概念。</p>
-<p>采用这种<strong>微服务架构和开发流程的目标是：在开发和部署生命周期中，尽量早地解决安全 问题</strong> —— 越早解决代价越小 ——并且解决安全问题的方式要标准和一致（standardized and consistent）。最终结果是，开发者无需在安全上花太多时间，而仍然能获得更多的安 全性保证（spend less time on security while still achieving more secure outcomes ）。</p>
+<p><strong>Google 做得比较出色的一点是：安全作为重要组成部分，在历次架构演进过程中都会考虑到</strong>。比如我们已经使用多年的保护基础设施安全的 BeyondCorp 模型，以及近期的云原生安全（cloud-native security）概念。</p>
+<p>采用这种<strong>微服务架构和开发流程的目标是：在开发和部署生命周期中，尽量早地解决安全问题</strong> —— 越早解决代价越小 ——并且解决安全问题的方式要标准和一致（standardized and consistent）。最终结果是，开发者无需在安全上花太多时间，而仍然能获得更多的安 全性保证（spend less time on security while still achieving more secure outcomes ）。</p>
 <h2 id="迁移到云原生架构"><a href="#迁移到云原生架构" class="headerlink" title="迁移到云原生架构"></a>迁移到云原生架构</h2><p>传统的基于边界的安全模型中，防火墙保护着网络边界，所有用户和服务都位于边界之内并 且是完全受信任的。这种模型已经无法满足现代安全架构（modern security architectures）的需求。</p>
-<p>现代企业中，用户的工作方式已经发生了变化，为了应对这种变化，我们之前提出了 BeyondCorp 模型。如今，用户都是移动办公的，工作地点经常会在公司的传统安全边界之 外，例如咖啡厅、飞机上，或者其他任何地方。<strong>在 BeyondCorp 中，我们弃用了特权企业 网络（privileged corporate network）的概念</strong>，访问认证（authorized access）<strong>只 依赖设备、用户凭证和属性</strong>（device and user credentials and attributes），而<strong>不 关心用户（接入时）的网络位置</strong>（network location）。</p>
+<p>现代企业中，用户的工作方式已经发生了变化，为了应对这种变化，我们之前提出了 BeyondCorp 模型。如今，用户都是移动办公的，工作地点经常会在公司的传统安全边界之 外，例如咖啡厅、飞机上，或者其他任何地方。<strong>在 BeyondCorp 中，我们弃用了特权企业网络（privileged corporate network）的概念</strong>，访问认证（authorized access）<strong>只依赖设备、用户凭证和属性</strong>（device and user credentials and attributes），而<strong>不关心用户（接入时）的网络位置</strong>（network location）。</p>
 <p>云原生安全的理念与此类似，只不过关注点从<strong>用户（users）</strong>变成了<strong>服务（services ）</strong> —— 在云原生世界里，我们不能仅简单地依赖防火墙来保护生产网络（production network），正如我们不能依赖防火墙保护企业网络（corporate network）。</p>
 <p>进一步，我们可以做如下对比：</p>
 <ul>
@@ -372,15 +372,15 @@
 </ul>
 <p>BeyondCorp 中提到，</p>
 <blockquote>
-<p>“<strong>用户信任</strong>（user trust）应依据<strong>设备的可感知上下文的状态</strong>等信息，而不应依 据能否连接到企业网络”。</p>
+<p>“<strong>用户信任</strong>（user trust）应依据<strong>设备的可感知上下文的状态</strong>等信息，而不应依据能否连接到企业网络”。</p>
 <p>” should be dependent on characteristics like the context-aware state of devices and not the ability to connect to the corp network”</p>
 </blockquote>
 <p>类似地理念在 BeyondProd 中表述为，</p>
 <blockquote>
-<p>“<strong>服务信任</strong>（service trust）应依据<strong>代码来源和服务身份</strong>等信息，而不应依据在 生产网络中的位置，例如 IP 或 hostname identity”。</p>
+<p>“<strong>服务信任</strong>（service trust）应依据<strong>代码来源和服务身份</strong>等信息，而不应依据在生产网络中的位置，例如 IP 或 hostname identity”。</p>
 <p>“service trust should be dependent on characteristics like code provenance and service identity, not the location in the production network, such as IP or hostname identity”.</p>
 </blockquote>
-<h3 id="云原生和应用部署"><a href="#云原生和应用部署" class="headerlink" title="云原生和应用部署"></a>云原生和应用部署</h3><p>偏传统的安全模型主要关注基于边界的安全（perimeter-based security），只靠这种模型 不足以保护云原生架构的安全。</p>
+<h3 id="云原生和应用部署"><a href="#云原生和应用部署" class="headerlink" title="云原生和应用部署"></a>云原生和应用部署</h3><p>偏传统的安全模型主要关注基于边界的安全（perimeter-based security），只靠这种模型不足以保护云原生架构的安全。</p>
 <p>考虑下面这个例子：</p>
 <ul>
 <li>单体应用</li>
@@ -388,7 +388,7 @@
 <li>数据中心采用传统“接入-汇聚-核心”三级网络架构（three-tier architecture）</li>
 <li>应用和物理资源都有足够的容量，能抗住突发事件的峰值负载</li>
 </ul>
-<p>这种有特殊硬件和网络需求的应用，都会特意部署到特殊的机器，通常情况下，这些机器都 有固定的 IP 地址。在这种情况下，应用的</p>
+<p>这种有特殊硬件和网络需求的应用，都会特意部署到特殊的机器，通常情况下，这些机器都有固定的 IP 地址。在这种情况下，应用的：</p>
 <ul>
 <li>发布频率很低</li>
 <li>发布很费劲</li>
@@ -398,13 +398,13 @@
 <p>如果是云原生模型，情况就不同了：</p>
 <ul>
 <li>容器将应用的可执行文件与底层的宿主机操作系统解耦，使得应用更易漂移（more portable）。</li>
-<li>容器的设计使用方式是不可变（be used immutably），这意味着一旦部署容器就不会再 变 —— 因此容器的重新构建和重新部署（rebuilt and redeployed）会更加频繁。</li>
+<li>容器的设计使用方式是不可变（be used immutably），这意味着一旦部署容器就不会再变 —— 因此容器的重新构建和重新部署（rebuilt and redeployed）会更加频繁。</li>
 <li>Jobs 可根据负载大小灵活扩展（scaled to handle load），负载升高时部署新 jobs， 负载降下去之后部分 jobs 销毁。</li>
 <li>容器经常会重启、销毁或重新调度，因此有硬件和网络的再利用和共享率更高。</li>
 <li>基于标准的构建和分发流程（build and distribution process），即使多个团队独立管 理他们的微服务开发，团队之间的开发过程也会更加一致和统一。</li>
 <li><strong>最终结果：能在开发过程中的更早阶段开始考虑安全方面的问题</strong>（例如，安全评审 、代码扫描、漏洞管理）。</li>
 </ul>
-<h3 id="给安全工作带来的启示（Implications-for-security）"><a href="#给安全工作带来的启示（Implications-for-security）" class="headerlink" title="给安全工作带来的启示（Implications for security）"></a>给安全工作带来的启示（Implications for security）</h3><p>我们已经讨论了很多边界内部非受信（untrusted interior）的情况，即 BeyondCorp 中的 用户，也适用于 BeyondProd 中的微服务 —— 但这需要安全做出哪些变化？表 1 列出了传 统基础设施安全和云原生架构安全的对比。表中还给出了从前者迁移后者需要做哪些事情。</p>
+<h3 id="给安全工作带来的启示（Implications-for-security）"><a href="#给安全工作带来的启示（Implications-for-security）" class="headerlink" title="给安全工作带来的启示（Implications for security）"></a>给安全工作带来的启示（Implications for security）</h3><p>我们已经讨论了很多边界内部非受信（untrusted interior）的情况，即 BeyondCorp 中的用户，也适用于 BeyondProd 中的微服务 —— 但这需要安全做出哪些变化？表 1 列出了传统基础设施安全和云原生架构安全的对比。表中还给出了从前者迁移后者需要做哪些事情。</p>
 <p>表 1：迁移到云原生架构面临的安全需求</p>
 <table>
 <thead>
@@ -464,16 +464,16 @@
 </table>
 <p>接下来对以上表格做一些解释。</p>
 <h4 id="从-“基于边界的安全”（perimeter-based-security）到-“零信任安全”（zero-trust-security）"><a href="#从-“基于边界的安全”（perimeter-based-security）到-“零信任安全”（zero-trust-security）" class="headerlink" title="从 “基于边界的安全”（perimeter-based security）到 “零信任安全”（zero-trust security）"></a>从 “基于边界的安全”（perimeter-based security）到 “零信任安全”（zero-trust security）</h4><p>在传统安全模型中，应用可以依赖私有数据中心的边界防火墙对入向流量做安全防护。</p>
-<p>在云原生安全模型中，边界防火墙仍然必要，正如在 BeyondCorp 模型中一样，但单靠防火 墙已经不够了。</p>
+<p>在云原生安全模型中，边界防火墙仍然必要，正如在 BeyondCorp 模型中一样，但单靠防火墙已经不够了。</p>
 <p>这里并没有引入新的待解决的安全问题，而是意识到这样一个事实：如果单靠防火墙无法完 全保护企业网络（corporate network），那单靠防火墙同样不能完全保护生产网络（ production network）。</p>
-<p>在零信任安全模型中，内部流量之间默认不再有信任 —— 需要其他的安全控制，例如认证和 加密。同时，<strong>向微服务的转变提供了一个对传统安全模型进行重新思考的机会</strong>。</p>
+<p>在零信任安全模型中，内部流量之间默认不再有信任 —— 需要其他的安全控制，例如认证和加密。同时，<strong>向微服务的转变提供了一个对传统安全模型进行重新思考的机会</strong>。</p>
 <ol>
 <li>当<strong>去掉仅仅依赖网络边界（例如，防火墙）这一假设后</strong>，就可以<strong>按服务（service）对网络进行进一步划分</strong>。</li>
 <li>顺着这个思路，更进一步，可以实现<strong>微服务级别的隔离</strong>（microservice-level segmentation），而<strong>服务之间无固有的信任</strong>（no inherent trust between services）。</li>
 <li>在这种微服务架构下，<strong>流量会有不同层次的信任，每层都有不同的控制方式</strong> —— 而 不再仅仅依据是内部流量还是外部流量来做区分。</li>
 </ol>
-<h4 id="从-“固定-IP-和硬件”-到-“更多地共享资源”"><a href="#从-“固定-IP-和硬件”-到-“更多地共享资源”" class="headerlink" title="从 “固定 IP 和硬件” 到 “更多地共享资源”"></a>从 “固定 IP 和硬件” 到 “更多地共享资源”</h4><p>在传统安全模型中，应用都是部署到特定的机器上，这些机器的 IP 地址很少发生变化。这 意味着安全工具看到的是一个<strong>相对静态的架构地图</strong>（architecture map），其中的应用 都是以可预知的方式联系到一起的 —— 因此防火墙这类的工具中，安全策略可以用 IP 地址 作为标识符（identifiers）。</p>
-<p>但是，在云原生世界中，随着共享宿主机和变化频繁的 jobs，使用防火墙控制微服务间的 访问变得不可行。我们不能再假设一个特定的 IP 地址会对应到一个特定的服务。因此， <strong>身份应该基于服务，而不是 IP 地址或主机名（hostname）</strong>。</p>
+<h4 id="从-“固定-IP-和硬件”-到-“更多地共享资源”"><a href="#从-“固定-IP-和硬件”-到-“更多地共享资源”" class="headerlink" title="从 “固定 IP 和硬件” 到 “更多地共享资源”"></a>从 “固定 IP 和硬件” 到 “更多地共享资源”</h4><p>在传统安全模型中，应用都是部署到特定的机器上，这些机器的 IP 地址很少发生变化。这意味着安全工具看到的是一个<strong>相对静态的架构地图</strong>（architecture map），其中的应用 都是以可预知的方式联系到一起的 —— 因此防火墙这类的工具中，安全策略可以用 IP 地址 作为标识符（identifiers）。</p>
+<p>但是，在云原生世界中，随着共享宿主机和变化频繁的 jobs，使用防火墙控制微服务间的访问变得不可行。我们不能再假设一个特定的 IP 地址会对应到一个特定的服务。因此， <strong>身份应该基于服务，而不是 IP 地址或主机名（hostname）</strong>。</p>
 <h4 id="从-“应用特定的安全实现”-到-“共享的安全需求集成到服务栈中”"><a href="#从-“应用特定的安全实现”-到-“共享的安全需求集成到服务栈中”" class="headerlink" title="从 “应用特定的安全实现” 到 “共享的安全需求集成到服务栈中”"></a>从 “应用特定的安全实现” 到 “共享的安全需求集成到服务栈中”</h4><p>在传统安全模型中，每个应用负责实现自己的安全需求，与其他服务的安全实现完全独立。 这些安全需求包括：</p>
 <ul>
 <li>身份管理（identity management）</li>
@@ -481,11 +481,11 @@
 <li>数据访问管理（data access management）</li>
 </ul>
 <p>这种方式会导致不一致的实现，或者未能全局地解决某些安全问题，因为这些问题遍布在多 个地方，修复更加困难。</p>
-<p>在云原生世界中，服务之间重用（reuse）组件的频率更高，并且有<strong>中心式的安全策略实 施点</strong>（choke points），使得各服务的策略实施更加一致。可以使用不同的安全服务实施 不同的安全策略。此时每个应用不再需要自己实现关键的安全服务，你可以将这些安全策略 应用到独立的微服务（例如，一种策略用于保障用户数据的授权访问，另一种策略用于保证 使用了最新的 TLS 加密套件）。</p>
+<p>在云原生世界中，服务之间重用（reuse）组件的频率更高，并且有<strong>中心式的安全策略实施点</strong>（choke points），使得各服务的策略实施更加一致。可以使用不同的安全服务实施 不同的安全策略。此时每个应用不再需要自己实现关键的安全服务，你可以将这些安全策略 应用到独立的微服务（例如，一种策略用于保障用户数据的授权访问，另一种策略用于保证 使用了最新的 TLS 加密套件）。</p>
 <h4 id="从-“特定的、频率较低的发布流程”-到-“标准化的、频率更高的发布流程”"><a href="#从-“特定的、频率较低的发布流程”-到-“标准化的、频率更高的发布流程”" class="headerlink" title="从 “特定的、频率较低的发布流程” 到 “标准化的、频率更高的发布流程”"></a>从 “特定的、频率较低的发布流程” 到 “标准化的、频率更高的发布流程”</h4><p>传统安全模型中，共享的服务非常少。代码（在整个应用内）更加分散，与本地开发（ local development）的耦合更高，这意味着如果一个变更会影响到应用的多个部分，我们 很难估计它可能导致的影响 —— 结果，发布频率变低，很难协调发布流程。在变更的时候， 开发者可能需要直接更新每个组件（例如，SSH 到虚拟机，更新某个配置）。综合起来，这 导致<strong>线上存在很多寿命极长的应用（extremely long-lived applications）（的实例）</strong>。</p>
-<p>从安全的角度看，由于代码（在整个应用内）更加分散，因此更难 review；如果发现一个 漏洞，要确保这个漏洞在所有代码中都修复了甚至更加困难。</p>
-<p>迁移到频率更高、更加标准化的云原生发布后，<strong>安全在软件开发生命周期的位置就能够左 移</strong> [2]。这使得实现一致的安全策略实施（包括常规的安装安全补丁）更加简单。</p>
-<h4 id="从-“物理机或-hypervisor-隔离的-workload”-到-“二进制打包、运行在共享机器上、需要更强隔离性的-workload”"><a href="#从-“物理机或-hypervisor-隔离的-workload”-到-“二进制打包、运行在共享机器上、需要更强隔离性的-workload”" class="headerlink" title="从 “物理机或 hypervisor 隔离的 workload” 到 “二进制打包、运行在共享机器上、需要更强隔离性的 workload”"></a>从 “物理机或 hypervisor 隔离的 workload” 到 “二进制打包、运行在共享机器上、需要更强隔离性的 workload”</h4><p>传统安全模型中，workloads 都是调度到各自专属的实例上，不存在共享资源，因此<strong>机器 和网络边界能够有效地保护机器上的应用</strong>；另一方面，物理机器、hypervisor 和传统防 火墙也能够有效地隔离 workload。</p>
+<p>从安全的角度看，由于代码（在整个应用内）更加分散，因此更难 review；如果发现一个漏洞，要确保这个漏洞在所有代码中都修复了甚至更加困难。</p>
+<p>迁移到频率更高、更加标准化的云原生发布后，<strong>安全在软件开发生命周期的位置就能够左移</strong> [2]。这使得实现一致的安全策略实施（包括常规的安装安全补丁）更加简单。</p>
+<h4 id="从-“物理机或-hypervisor-隔离的-workload”-到-“二进制打包、运行在共享机器上、需要更强隔离性的-workload”"><a href="#从-“物理机或-hypervisor-隔离的-workload”-到-“二进制打包、运行在共享机器上、需要更强隔离性的-workload”" class="headerlink" title="从 “物理机或 hypervisor 隔离的 workload” 到 “二进制打包、运行在共享机器上、需要更强隔离性的 workload”"></a>从 “物理机或 hypervisor 隔离的 workload” 到 “二进制打包、运行在共享机器上、需要更强隔离性的 workload”</h4><p>传统安全模型中，workloads 都是调度到各自专属的实例上，不存在共享资源，因此<strong>机器和网络边界能够有效地保护机器上的应用</strong>；另一方面，物理机器、hypervisor 和传统防 火墙也能够有效地隔离 workload。</p>
 <p>在云原生世界中，workloads 都是容器化的，可执行文件打包到容器镜像，然后调度到共享 资源的机器上执行。因此，workload 之间需要有更强的隔离机制。通过网络控制、sandbox 之类的技术，能够部分地将 workload 隔离到不同的微服务。</p>
 <h3 id="安全原则"><a href="#安全原则" class="headerlink" title="安全原则"></a>安全原则</h3><p>在设计云原生架构的过程中，我们希望在多个方面同时加固我们的安全（concurrently strengthen our security） —— 因此我们制定和优化了下面的这些安全原则：</p>
 <ul>
@@ -493,7 +493,7 @@
 <p>虽然基于防火墙的方法对云原生来说并不是一个新概念，但它<strong>仍然是一条最佳安全 实践</strong>。在云原生环境中，边界方式（perimeter approach）用于<strong>最大程度地在来自 公网的未授权流量和潜在攻击（例如，大规模 DoS 攻击）面前保护基础设施</strong>。</p>
 </li>
 <li><p><strong>服务之间默认没有互信</strong>：因此，只有已知的、受信的、认证过的调用方才能访问服务。</p>
-<p>这能防止攻击者利用未受信的代码（untrusted code）访问服务。如果一个服务被攻陷 了，这个服务能够阻止攻击者执行能扩展其访问范围的动作。<strong>这种双向非互信（ mutual distrust）有助于限制被入侵时的爆炸半径</strong>。</p>
+<p>这能防止攻击者利用未受信的代码（untrusted code）访问服务。如果一个服务被攻陷了，这个服务能够阻止攻击者执行能扩展其访问范围的动作。<strong>这种双向非互信（ mutual distrust）有助于限制被入侵时的爆炸半径</strong>。</p>
 </li>
 <li><p><strong>受信的机器运行来源已知的代码</strong>：这样就限制了服务只能使用认证过的代码和配置， 并且只能运行在认证过的、验证过的环境中。</p>
 </li>
@@ -512,8 +512,8 @@
 <li><strong>人工干预应当是例外，而不是日常</strong>，并且<strong>人工干预的过程应当是可审计的</strong>。</li>
 <li>最终我们能够<strong>基于服务部署时的代码和配置对服务进行认证</strong>，而不是基于对部署这个服务的人。</li>
 </ul>
-<p>综上，这些安全原则的实现意味着，容器和其内运行的微服务应该是可部署的、能够与彼此 通信的、共享资源的，且不会削弱云原生架构的优良特性（例如，简单的 workload 管理、 自动扩缩容、高效的可执行文件打包）。在不给微服务开发者增加负担、无需他们了 解底层基础设施的安全和实现细节的前提下，这些目标仍然是可实现的。</p>
-<h2 id="Google-的内部安全服务"><a href="#Google-的内部安全服务" class="headerlink" title="Google 的内部安全服务"></a>Google 的内部安全服务</h2><p>为保护 Google 的云原生基础设施，我们设计和开发了一些内部工具和服务。下面列出的这 些工具和服务协同工作，实现了前面定义的安全原则。</p>
+<p>综上，这些安全原则的实现意味着，容器和其内运行的微服务应该是可部署的、能够与彼此通信的、共享资源的，且不会削弱云原生架构的优良特性（例如，简单的 workload 管理、 自动扩缩容、高效的可执行文件打包）。在不给微服务开发者增加负担、无需他们了解底层基础设施的安全和实现细节的前提下，这些目标仍然是可实现的。</p>
+<h2 id="Google-的内部安全服务"><a href="#Google-的内部安全服务" class="headerlink" title="Google 的内部安全服务"></a>Google 的内部安全服务</h2><p>为保护 Google 的云原生基础设施，我们设计和开发了一些内部工具和服务。下面列出的这些工具和服务协同工作，实现了前面定义的安全原则。</p>
 <ul>
 <li><p><a href="https://cloud.google.com/security/encryption-in-transit#user_to_google_front_end_encryption" target="_blank" rel="noopener"><strong>Google Front End (GFE)</strong></a>： 终结来自终端用户的连接，提供一个集中实施 TLS 最佳实践的位置（central point for enforcing TLS best practices）。</p>
 <p>虽然我们的重心已经不再是基于边界的安全，但 GFE 仍然是我们保护内部服务免受 DoS 攻击的安全策略重要组成部分。</p>
@@ -522,7 +522,7 @@
 <li><p><a href="https://cloud.google.com/security/encryption-in-transit/application-layer-transport-security" target="_blank" rel="noopener"><strong>Application Layer Transport Security (ALTS，应用层传输安全)</strong></a>： 用于 RPC 认证、完整性验证和加密。</p>
 <p>ALTS 是 Google 基础设施中服务间的一个<strong>双向认证和传输加密</strong>系统。身份（ identities）通常与服务（services ）绑定，而不是与服务器名字或宿主机（server name or host）绑定。这使得无缝的微服务复制、负载均衡和跨宿主机重调度更加方便。</p>
 </li>
-<li><p><strong>Binary Authorization（二进制授权）for Borg</strong> and <strong>Host Integrity</strong>：分别用 于微服务和机器的完整性验证。</p>
+<li><p><strong>Binary Authorization（二进制授权）for Borg</strong> and <strong>Host Integrity</strong>：分别用于微服务和机器的完整性验证。</p>
 <ul>
 <li><a href="https://cloud.google.com/security/binary-authorization-for-borg" target="_blank" rel="noopener"><strong>Binary Authorization for Borg (BAB，Borg 二进制授权)</strong></a>： 一种部署时检查（deploy-time enforcement check）机制，确保代码在部署之前符 合内部安全要求。BAB 检查包括由其他工程师 review 过的变更、提交到仓库的 代码、在专属基础设施上构建出来的可验证二进制文件。在我们的基础设施中，<strong>BAB 防止了未授权微服务的部署</strong>。</li>
 <li><strong>Host Integrity (HINT，宿主机完整性)</strong>：通过一个安全的启动过程，验证宿主 机系统软件的完整性，由安全的微控制器硬件在背后支持（secure microcontroller hardware）。HINT 检查包括<strong>验证 BIOS、BMC、Bootloader 和操作系统内核</strong>的数字签名。</li>
@@ -530,17 +530,17 @@
 </li>
 <li><p><strong>Service Access Policy</strong> 和 <strong>End user context tickets</strong>：用于限制对数据的访问。</p>
 <ul>
-<li><a href="https://cloud.google.com/security/infrastructure/design#inter-service_access_management" target="_blank" rel="noopener"><strong>Service Access Policy</strong>（服务访问策略）</a>: 限制服务之间的数据访问。当从一个服务向另一个服务发起 RPC 调用时， Service Access Policy 会定义访问对端服务的数据时所需的认证、鉴权和审计策略。 这会限制数据访问方式、授予最小级别的访问权限，并规定这种访问应当如何审计。 在 Google 基础设施中， Service Access Policy <strong>限制了一个微服务对另一方 微服务的数据的访问，并支持访问控制的全局分析</strong>。</li>
+<li><a href="https://cloud.google.com/security/infrastructure/design#inter-service_access_management" target="_blank" rel="noopener"><strong>Service Access Policy</strong>（服务访问策略）</a>: 限制服务之间的数据访问。当从一个服务向另一个服务发起 RPC 调用时， Service Access Policy 会定义访问对端服务的数据时所需的认证、鉴权和审计策略。 这会限制数据访问方式、授予最小级别的访问权限，并规定这种访问应当如何审计。 在 Google 基础设施中， Service Access Policy <strong>限制了一个微服务对另一方微服务的数据的访问，并支持访问控制的全局分析</strong>。</li>
 <li><a href="https://cloud.google.com/security/infrastructure/design#access_management_of_end_user_data" target="_blank" rel="noopener"><strong>End user context (EUC，终端用户上下文) tickets</strong></a>: 这些 tickets 由 End User Authentication service（终端用户认证服务）颁发，<strong>给每个服务提供一个用户身份 （user identity），这个身份与他们的服务身份（service identity）是独立的</strong>。 这些 tickets 是有完整性保护的（integrity-protected），中心式颁发的（centrally-issued）， 可转发的凭证（forwardable credentials），能够证明某个正在请求服务的终端用户的身份。 这使得服务之间不需要彼此信任，<strong>基于 ALTS 的对端身份（peer identity via ALTS）经常不足以完成授权，因为这种授权决定通常还要基于终端用户的身份</strong>。</li>
 </ul>
 </li>
 <li><p><strong>用于蓝绿部署的 Borg 工具集</strong> [3]：在执行维护任务时，这种工具负责对运行中的 workloads 进行迁移。</p>
 <p>方式：现有的 Borg job 不动，加入一个新 Borg job，然后负载均衡器将流量逐步从 前者切到后者。</p>
-<p>这种方式使得升级微服务时不会引起服务中断（downtime），终端用 户无感知。</p>
+<p>这种方式使得升级微服务时不会引起服务中断（downtime），终端用户无感知。</p>
 <p>这种工具用于无间断地服务升级（服务添加了新特性），以及重要安全更新（例如 HeartBleed 和 <a href="https://cloud.google.com/blog/topics/inside-google-cloud/answering-your-questions-about-meltdown-and-spectre" target="_blank" rel="noopener">Spectre/Meltdown</a>)。如果变更会影响到 Google Cloud 基础设施，我们会使用热迁移（live migration） 保证虚拟机 workload 不受影响。</p>
 </li>
 <li><p><a href="https://gvisor.dev/" target="_blank" rel="noopener"><strong>gVisor</strong></a>：用于 workload 隔离。</p>
-<p>gVisor 使用一个用户态内核拦截和处理系统调用，减少与宿主机的交互以及潜在的攻 击面。这个内核提供了运行一个应用所需的大部分功能，但缩小了应用能够访问到的宿 主机内核表面（host kernel surface）。</p>
+<p>gVisor 使用一个用户态内核拦截和处理系统调用，减少与宿主机的交互以及潜在的攻击面。这个内核提供了运行一个应用所需的大部分功能，但缩小了应用能够访问到的宿主机内核表面（host kernel surface）。</p>
 <p>在 Google 的基础设施中，内部应用和 Google Cloud 客户的应用共享宿主机，而 gVisor 就是我们隔离二者的重要工具之一。</p>
 </li>
 </ul>
@@ -616,11 +616,11 @@
 <p>如图 2 所示，</p>
 <ol>
 <li>开发者修改了某个微服务，这些变动必须提交到我们的中心式代码仓库进行 code review。</li>
-<li>code review 通过之后，变更会提交到一个中心式的、受信任的构建系统，后 者会产生一个包（package），这个 package 附带了一个经过签名的、可验证的 build manifest 证书。在部署时（deployment time），BAB 会对已签名的证书进行验证。</li>
+<li>code review 通过之后，变更会提交到一个中心式的、受信任的构建系统，后者会产生一个包（package），这个 package 附带了一个经过签名的、可验证的 build manifest 证书。在部署时（deployment time），BAB 会对已签名的证书进行验证。</li>
 <li>所有 workload 更新（不管是例行更新，还是紧急安全补丁）都以蓝绿部署方式进行。 GFE 通过负载均衡将流量切换到新部署的版本上，保证业务的连续。</li>
 </ol>
-<p>所有的 workloads 都需要隔离。如果 workload 可信程度较低，例如，是多租户 workload 或源代码来自 Google 之外，这种 workload 可能会被部署到 gVisor 保护的环 境中，或者利用其它层的隔离。如果应用的一个实例被入侵了，这种隔离能保证其它的实例 不受影响。</p>
-<h1 id="BeyondProd-在-Google-的落地"><a href="#BeyondProd-在-Google-的落地" class="headerlink" title="BeyondProd 在 Google 的落地"></a>BeyondProd 在 Google 的落地</h1><h2 id="押宝云原生（Going-all-in）"><a href="#押宝云原生（Going-all-in）" class="headerlink" title="押宝云原生（Going all in）"></a>押宝云原生（Going all in）</h2><p>向云原生的转变，再加上基础设施之上的合理安全措施，使得 Google 能够提供非常强的安 全特性，这包括我们的内部 workloads ，也包括外部（Google Clod）workloads。</p>
+<p>所有的 workloads 都需要隔离。如果 workload 可信程度较低，例如，是多租户 workload 或源代码来自 Google 之外，这种 workload 可能会被部署到 gVisor 保护的环 境中，或者利用其它层的隔离。如果应用的一个实例被入侵了，这种隔离能保证其它的实例不受影响。</p>
+<h1 id="BeyondProd-在-Google-的落地"><a href="#BeyondProd-在-Google-的落地" class="headerlink" title="BeyondProd 在 Google 的落地"></a>BeyondProd 在 Google 的落地</h1><h2 id="押宝云原生（Going-all-in）"><a href="#押宝云原生（Going-all-in）" class="headerlink" title="押宝云原生（Going all in）"></a>押宝云原生（Going all in）</h2><p>向云原生的转变，再加上基础设施之上的合理安全措施，使得 Google 能够提供非常强的安全特性，这包括我们的内部 workloads ，也包括外部（Google Clod）workloads。</p>
 <p>通过构建共享的组件，每个开发者自己需要实现的公共安全需求降到了最低。</p>
 <p>理想情况下，安全功能只应该有很少部分（甚至完全不应该）集成到每个应用中，而应该作 为一个底层的交换网格（fabric）连接各微服务。这种架构通常称为 service mesh。这同 时也意味着，<strong>安全能够从常规的开发或部署活动中独立出来，单独管理和实现</strong>。</p>
 <h2 id="转向云原生，Google-做了什么"><a href="#转向云原生，Google-做了什么" class="headerlink" title="转向云原生，Google 做了什么"></a>转向云原生，Google 做了什么</h2><p>Google 向云原生的转变主要涉及两个方面的改造工作：</p>
@@ -647,7 +647,7 @@
 </ol>
 <p>例如，当一个服务新接入 BAB 时，服务 owner 会打开 <code>audit-only</code> 模式。这有助于 识别出不符合要求的代码和工作流。一旦解决了发现的这些问题，他们就可以关闭 <code>audit-only</code> 模式，切换到 <code>enforcement</code> 模式。</p>
 <p>我们会先使用 gVisor 对 workloads进行沙盒测试，即使沙盒提供的能力和我们的需求之间 仍有差距，我们会不断找出这些差距，逐步增强沙盒的功能。</p>
-<h2 id="带来的收益"><a href="#带来的收益" class="headerlink" title="带来的收益"></a>带来的收益</h2><p>正如 BeyondCorp 帮助我们迈过了基于边界的安全模型时代，BeyondProd 也代表了一个类 似的飞跃：这次解决的是生产环境的安全问题。</p>
+<h2 id="带来的收益"><a href="#带来的收益" class="headerlink" title="带来的收益"></a>带来的收益</h2><p>正如 BeyondCorp 帮助我们迈过了基于边界的安全模型时代，BeyondProd 也代表了一个类似的飞跃：这次解决的是生产环境的安全问题。</p>
 <p>BeyondProd 方法描述了一个云原生安全架构，其：</p>
 <ul>
 <li>假设服务之间没有信任</li>
