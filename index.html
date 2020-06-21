@@ -178,10 +178,21 @@
         <div class="content">
             <p><strong>转载自微信公众号:车小胖谈网络</strong></p>
 <p><strong>本文内容仅供学习交流，如有侵权立即删除。</strong></p>
-<h1 id="计算机网络信息传输安全是如何保障的？"><a href="#计算机网络信息传输安全是如何保障的？" class="headerlink" title="计算机网络信息传输安全是如何保障的？"></a>计算机网络信息传输安全是如何保障的？</h1><p>无论是采用三层IPSec加密，四层TLS加密，七层的应用层加密技术，要想实现网络的传输安全，需要实现以下基本元素：</p>
+<h2 id="计算机网络信息传输安全是如何保障的？"><a href="#计算机网络信息传输安全是如何保障的？" class="headerlink" title="计算机网络信息传输安全是如何保障的？"></a>计算机网络信息传输安全是如何保障的？</h2><p>无论是采用三层IPSec加密，四层TLS加密，七层的应用层加密技术，要想实现网络的传输安全，需要实现以下基本元素：</p>
 <p><strong>1.数据的机密性 </strong>通俗地说，就是一端将明文数据加密，另外一端将加密数据解密成明文，通常使用AES-CBC加密算法，需要双方有一个session key。</p>
 <p><strong>2.保证数据</strong> 在传输过程中，数据不被窜改，可以使用HMAC来校验，通常使用MD5或SHA算法，同样需要一个HMACkey。</p>
 <p><strong>3.防重放攻击</strong>  防止第三方捕获一个合法的密文，然后再重新发送一次。对付这种攻击，只需要消息体里有序列号、或时间戳保护即可。</p>
+<p><strong>4.数据流量大小的私密性</strong>防止第三方可以根据加密报文的字节数，推测可能的内容，可以将原始报文用废数据填充。以上是要实现的目标，但<strong>不要忘记一个大前提，通信双方需要互相认证、或单向认证</strong>，而实现认证的技术：</p>
+<ul>
+<li><strong>数字证书</strong></li>
+<li><strong>预共享密码</strong></li>
+</ul>
+<p>而需要协议来承载以上的认证过程，我们需要控制协议来完成这项工作：</p>
+<ul>
+<li><p><strong>IKE</strong></p>
+</li>
+<li><p><strong>TLS Handshake</strong></p>
+<p>同时还可以使用这些控制协议来完成，通信两端的加密参数（加密算法、HMAC算法）的协商，以及key（session /HMAC)的协商，而key 的协商通常使用DH算法、RSA算法。实现了以上所有元素，就可以安全地传输数据了。以上是很早以前写的答案，其实一个字就概括了，这个字就是<strong><em>Key</em></strong>！</p></li></ul>
             <div class="level is-size-7 has-text-grey">
     <div class="level-left">
         <i class="far fa-eye"></i>
@@ -501,7 +512,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-05T12:46:00.000Z">2019-02-05</time></div>
-                    <a href="/2019/02/05/Raspberry-Pi1/" class="has-link-black-ter is-size-6">树莓派系统基本设置</a>
+                    <a href="/2019/02/05/Raspberry-Pi1_Config/" class="has-link-black-ter is-size-6">树莓派系统基本设置</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Liunx/">Liunx</a> / <a class="has-link-grey -link" href="/categories/Liunx/Raspbian/">Raspbian</a>
                     </p>
@@ -680,7 +691,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-05T12:46:00.000Z">2019-02-05</time></div>
-                    <a href="/2019/02/05/Raspberry-Pi1/" class="has-link-black-ter is-size-6">树莓派系统基本设置</a>
+                    <a href="/2019/02/05/Raspberry-Pi1_Config/" class="has-link-black-ter is-size-6">树莓派系统基本设置</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Liunx/">Liunx</a> / <a class="has-link-grey -link" href="/categories/Liunx/Raspbian/">Raspbian</a>
                     </p>
