@@ -164,6 +164,171 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-07-02T07:32:35.000Z">2020-07-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Network/HTTP/">HTTP</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 小时 读完 (大约 9745 个字)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/07/02/图解TCP/">图解TCP</a>
+            
+        </h1>
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#前言">
+        <span class="has-mr-6">1</span>
+        <span>前言</span>
+        </a></li><li>
+        <a class="is-flex" href="#重传机制">
+        <span class="has-mr-6">2</span>
+        <span>重传机制</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#超时重传">
+        <span class="has-mr-6">2.1</span>
+        <span>超时重传</span>
+        </a></li><li>
+        <a class="is-flex" href="#快速重传">
+        <span class="has-mr-6">2.2</span>
+        <span>快速重传</span>
+        </a></li><li>
+        <a class="is-flex" href="#SACK-方法">
+        <span class="has-mr-6">2.3</span>
+        <span>SACK 方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#Duplicate-SACK">
+        <span class="has-mr-6">2.4</span>
+        <span>Duplicate SACK</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#滑动窗口">
+        <span class="has-mr-6">3</span>
+        <span>滑动窗口</span>
+        </a></li><li>
+        <a class="is-flex" href="#流量控制">
+        <span class="has-mr-6">4</span>
+        <span>流量控制</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#操作系统缓冲区与滑动窗口的关系">
+        <span class="has-mr-6">4.1</span>
+        <span>操作系统缓冲区与滑动窗口的关系</span>
+        </a></li><li>
+        <a class="is-flex" href="#窗口关闭">
+        <span class="has-mr-6">4.2</span>
+        <span>窗口关闭</span>
+        </a></li><li>
+        <a class="is-flex" href="#糊涂窗口综合症">
+        <span class="has-mr-6">4.3</span>
+        <span>糊涂窗口综合症</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#拥塞控制">
+        <span class="has-mr-6">5</span>
+        <span>拥塞控制</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#慢启动">
+        <span class="has-mr-6">5.1</span>
+        <span>慢启动</span>
+        </a></li><li>
+        <a class="is-flex" href="#拥塞避免算法">
+        <span class="has-mr-6">5.2</span>
+        <span>拥塞避免算法</span>
+        </a></li><li>
+        <a class="is-flex" href="#拥塞发生">
+        <span class="has-mr-6">5.3</span>
+        <span>拥塞发生</span>
+        </a></li><li>
+        <a class="is-flex" href="#快速恢复">
+        <span class="has-mr-6">5.4</span>
+        <span>快速恢复</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#巨人的肩膀">
+        <span class="has-mr-6">6</span>
+        <span>巨人的肩膀</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
+        <div class="content">
+            <p><strong>转载自微信公众号:小林coding</strong></p>
+<p><strong>本文内容仅供学习交流，如有侵权立即删除。</strong></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>相信大家都知道 TCP 是一个可靠传输的协议，那它是如何保证可靠的呢？</p>
+<p>为了实现可靠性传输，需要考虑很多事情，例如数据的破坏、丢包、重复以及分片顺序混乱等问题。如不能解决这些问题，也就无从谈起可靠传输。</p>
+<p>那么，TCP 是通过序列号、确认应答、重发控制、连接管理以及窗口控制等机制实现可靠性传输的。</p>
+<p>今天，将重点介绍 TCP 的<strong>重传机制、滑动窗口、流量控制、拥塞控制。</strong></p>
+<p><img src="Summary.png" alt=""></p>
+            <div class="level is-size-7 has-text-grey">
+    <div class="level-left">
+        <i class="far fa-eye"></i>
+        <span>&nbsp;</span>
+        <span id="busuanzi_container_page_pv" style="display: inline;">
+            <span id="busuanzi_value_page_pv">0</span>
+        </span>
+    </div>
+</div>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/07/02/图解TCP/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+    
+<style>
+  @media screen and (min-width: 1472px) {
+    .is-2-column .container {
+        max-width: 1344px !important;
+        width: 1344px !important;
+    }
+  }
+  @media screen and (min-width: 900px) {
+    .is-1-column .container, .is-2-column .container {
+        max-width: 1344px !important;
+        width: 1344px !important;
+    }
+  }
+</style>
+
+
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-06-21T09:32:21.000Z">2020-06-21</time>
                 
                 <div class="level-item">
@@ -709,7 +874,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        7
+                        8
                     </p>
                 </div>
             </div>
@@ -817,7 +982,7 @@
                 <span class="level-item">Network</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">5</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Network/Architecture/">
@@ -833,7 +998,7 @@
                 <span class="level-item">HTTP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Network/security/">
@@ -869,6 +1034,19 @@
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-02T07:32:35.000Z">2020-07-02</time></div>
+                    <a href="/2020/07/02/图解TCP/" class="has-link-black-ter is-size-6">图解TCP</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/HTTP/">HTTP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -922,19 +1100,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-05T12:46:00.000Z">2019-02-05</time></div>
-                    <a href="/2019/02/05/Raspberry-Pi1_Config/" class="has-link-black-ter is-size-6">树莓派系统基本设置</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Liunx/">Liunx</a> / <a class="has-link-grey -link" href="/categories/Liunx/Raspbian/">Raspbian</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -946,6 +1111,17 @@
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/06/">
@@ -1010,7 +1186,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Reproduced/">
                         <span class="tag">Reproduced</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -1053,6 +1229,19 @@
             
             <div class="media-content">
                 <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-02T07:32:35.000Z">2020-07-02</time></div>
+                    <a href="/2020/07/02/图解TCP/" class="has-link-black-ter is-size-6">图解TCP</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/HTTP/">HTTP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-21T09:32:21.000Z">2020-06-21</time></div>
                     <a href="/2020/06/21/Network-transmission-security/" class="has-link-black-ter is-size-6">Network transmission security</a>
                     <p class="is-size-7 is-uppercase">
@@ -1101,19 +1290,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-05T12:46:00.000Z">2019-02-05</time></div>
-                    <a href="/2019/02/05/Raspberry-Pi1_Config/" class="has-link-black-ter is-size-6">树莓派系统基本设置</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Liunx/">Liunx</a> / <a class="has-link-grey -link" href="/categories/Liunx/Raspbian/">Raspbian</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1125,6 +1301,17 @@
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/06/">
@@ -1189,7 +1376,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Reproduced/">
                         <span class="tag">Reproduced</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
