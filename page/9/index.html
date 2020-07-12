@@ -15,7 +15,7 @@
 <meta name="keywords" content="J0kkeR">
 <meta property="og:type" content="website">
 <meta property="og:title" content="J0kkeR">
-<meta property="og:url" content="https://www.jlovek.cn/page/5/index.html">
+<meta property="og:url" content="https://www.jlovek.cn/page/9/index.html">
 <meta property="og:site_name" content="J0kkeR">
 <meta property="og:description" content="C9 80 C1 E3 F7">
 <meta property="og:locale" content="zh-CN">
@@ -163,17 +163,17 @@ var _hmt = _hmt || [];
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-09T06:49:01.000Z">2020-02-09</time>
+                <time class="level-item has-text-grey" datetime="2019-02-02T10:37:20.000Z">2019-02-02</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Network/">Network</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Network/HTTP/">HTTP</a>
+                <a class="has-link-grey -link" href="/categories/Hardware/">Hardware</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Hardware/Raspbian/">Raspbian</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 读完 (大约 1168 个字)
+                    4 分钟 读完 (大约 560 个字)
                 </span>
                 
             </div>
@@ -181,7 +181,7 @@ var _hmt = _hmt || [];
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/02/09/HTTPS-encryption-explained/">HTTPS Encryption Explained</a>
+                <a class="has-link-black-ter" href="/2019/02/02/Raspberry-Pi/">树莓派系统安装</a>
             
         </h1>
         
@@ -192,50 +192,85 @@ var _hmt = _hmt || [];
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#QuestionⅠ">
+        <a class="is-flex" href="#0X00">
         <span class="has-mr-6">1</span>
-        <span>QuestionⅠ</span>
+        <span>0X00</span>
         </a></li><li>
-        <a class="is-flex" href="#QuestionⅡ">
+        <a class="is-flex" href="#0X01">
         <span class="has-mr-6">2</span>
-        <span>QuestionⅡ</span>
+        <span>0X01</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#设置无线网连接">
+        <span class="has-mr-6">2.1</span>
+        <span>设置无线网连接</span>
         </a></li><li>
-        <a class="is-flex" href="#QuestionⅢ">
+        <a class="is-flex" href="#开启强制HDMI输出">
+        <span class="has-mr-6">2.2</span>
+        <span>开启强制HDMI输出</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#0X02">
         <span class="has-mr-6">3</span>
-        <span>QuestionⅢ</span>
-        </a></li></ul>
+        <span>0X02</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#通电测试">
+        <span class="has-mr-6">3.1</span>
+        <span>通电测试</span>
+        </a></li></ul></li></ul>
         </div>
     </div>
 </div>
 
         <div class="content">
-            <p><strong>转载自微信公众号:车小胖谈网络</strong></p>
-<p><strong>本文内容仅供学习交流，如有侵权立即删除。</strong></p>
-<h2 id="QuestionⅠ"><a href="#QuestionⅠ" class="headerlink" title="QuestionⅠ"></a>QuestionⅠ</h2><blockquote>
-<p>好比说邮箱，登录时进行HTTPS加密了，即使提交时保护了账户信息，但之后的请求，邮件服务器返回的网页源代码，信件内容不是都在上面吗？这些信息同时被加密了吗？</p>
-</blockquote>
-<hr>
-<p>纠正一点，这个世界上压根没有<strong>HTTPS</strong>这个协议。当我们提到HTTPS时，其实同时提到两个协议，一个是<strong>TLS</strong>，另外一个是<strong>HTTP</strong>，它们狼狈为奸抱团取暖，共同为用户提供<strong>安全(Security)</strong>访问<strong>网页（HTTP</strong>）的服务，缩写为<strong>HTTPS</strong>。</p>
-<p>以大家从知乎网站拉取的网页为例，页面内容通常由N个IP报文组成，每一个IP报文的逻辑格式如下：</p>
+            <h1 id="0X00"><a href="#0X00" class="headerlink" title="0X00"></a>0X00</h1><hr>
 <table>
 <thead>
 <tr>
-<th>IP</th>
-<th>TCP</th>
-<th>TLS</th>
-<th style="text-align:center">HTTP</th>
+<th style="text-align:left">硬件准备</th>
+<th style="text-align:left"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td style="text-align:center">已加密</td>
+<td style="text-align:left">Raspberry Pi3</td>
+<td style="text-align:left">一个</td>
+</tr>
+<tr>
+<td style="text-align:left">TF储存卡</td>
+<td style="text-align:left">推荐16GB的高速卡</td>
+</tr>
+<tr>
+<td style="text-align:left">路由器</td>
+<td style="text-align:left">一台</td>
+</tr>
+<tr>
+<td style="text-align:left">电脑</td>
+<td style="text-align:left">已连接到路由器</td>
 </tr>
 </tbody>
 </table>
-<p>“<strong>HTTP</strong>”完全加密，只有数据的发送方、接收方有解密的密钥可以解开，任何第三方都无法解密获取明文的HTTP内容，因为没有密钥信息。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">软件准备</th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">SD Card Formatter</td>
+<td style="text-align:left"><a href="https://www.sdcard.org/chs/downloads/formatter_4/eula_windows/SDCardFormatterv5_WinEN.zip" target="_blank" rel="noopener">点击下载</a>(Windows版本)</td>
+</tr>
+<tr>
+<td style="text-align:left">Win32 Disk Imager</td>
+<td style="text-align:left"><a href="https://sourceforge.net/projects/win32diskimager/files/Archive/win32diskimager-1.0.0-install.exe/download?use_mirror=nchc" target="_blank" rel="noopener">点击进入下载链接</a></td>
+</tr>
+<tr>
+<td style="text-align:left">树莓派镜像</td>
+<td style="text-align:left"><a href="https://sourceforge.net/projects/win32diskimager/files/Archive/win32diskimager-1.0.0-install.exe/download?use_mirror=nchc" target="_blank" rel="noopener">点击进入下载链接</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>推荐这个带软件集成的桌面版本</strong><br><img src="version.png" alt=""><br></p>
             <div class="level is-size-7 has-text-grey">
     <div class="level-left">
         <i class="far fa-eye"></i>
@@ -251,7 +286,7 @@ var _hmt = _hmt || [];
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/02/09/HTTPS-encryption-explained/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/2019/02/02/Raspberry-Pi/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -274,10 +309,10 @@ var _hmt = _hmt || [];
 <div class="card card-transparent">
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
         <div class="pagination-previous">
-            <a class="is-flex-grow has-text-black-ter" href="/page/4/">上一页</a>
+            <a class="is-flex-grow has-text-black-ter" href="/page/8/">上一页</a>
         </div>
-        <div class="pagination-next">
-            <a class="is-flex-grow has-text-black-ter" href="/page/6/">下一页</a>
+        <div class="pagination-next is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/page/10/">下一页</a>
         </div>
         <ul class="pagination-list is-hidden-mobile">
             
@@ -285,15 +320,9 @@ var _hmt = _hmt || [];
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/4/">4</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/8/">8</a></li>
             
-            <li><a class="pagination-link is-current" href="/page/5/">5</a></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/page/6/">6</a></li>
-            
-            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/page/9/">9</a></li>
+            <li><a class="pagination-link is-current" href="/page/9/">9</a></li>
             
         </ul>
     </nav>
