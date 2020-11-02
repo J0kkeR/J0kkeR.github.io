@@ -185,6 +185,143 @@ var _hmt = _hmt || [];
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-11-02T07:49:16.000Z">2020-11-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Network/security/">security</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 小时 读完 (大约 6708 个字)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/11/02/CrowdStrike/">CrowdStrike</a>
+            
+        </h1>
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#前言">
+        <span class="has-mr-6">1</span>
+        <span>前言</span>
+        </a></li><li>
+        <a class="is-flex" href="#什么是无文件攻击？">
+        <span class="has-mr-6">2</span>
+        <span>什么是无文件攻击？</span>
+        </a></li><li>
+        <a class="is-flex" href="#真实案例：一个无文件入侵的解剖">
+        <span class="has-mr-6">3</span>
+        <span>真实案例：一个无文件入侵的解剖</span>
+        </a></li><li>
+        <a class="is-flex" href="#作案工具：真实世界的无文件恶意软件">
+        <span class="has-mr-6">4</span>
+        <span>作案工具：真实世界的无文件恶意软件</span>
+        </a></li><li>
+        <a class="is-flex" href="#为何传统技术无法抵御无文件攻击">
+        <span class="has-mr-6">5</span>
+        <span>为何传统技术无法抵御无文件攻击</span>
+        </a></li><li>
+        <a class="is-flex" href="#CrowdStrike的解决方案">
+        <span class="has-mr-6">6</span>
+        <span>CrowdStrike的解决方案</span>
+        </a></li><li>
+        <a class="is-flex" href="#IOA（攻击指标）的力量">
+        <span class="has-mr-6">7</span>
+        <span>IOA（攻击指标）的力量</span>
+        </a></li><li>
+        <a class="is-flex" href="#托管狩猎">
+        <span class="has-mr-6">8</span>
+        <span>托管狩猎</span>
+        </a></li><li>
+        <a class="is-flex" href="#结论">
+        <span class="has-mr-6">9</span>
+        <span>结论</span>
+        </a></li><li>
+        <a class="is-flex" href="#关于CrowdStrike">
+        <span class="has-mr-6">10</span>
+        <span>关于CrowdStrike</span>
+        </a></li><li>
+        <a class="is-flex" href="#笔者增补：威胁图和攻击指标">
+        <span class="has-mr-6">11</span>
+        <span>笔者增补：威胁图和攻击指标</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
+        <div class="content">
+            <p><strong>转载自微信公众号:网络安全观</strong></p>
+<p><strong>本文内容仅供学习交流，如有侵权立即删除。</strong></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>CrowdStrike是端点保护平台（EPP）的最强者，是云交付的下一代端点保护的领导者。由于CrowdStrike邮件推送了<strong>“无文件攻击白皮书”</strong>《谁需要恶意软件？<strong>对手如何使用无文件攻击来规避你的安全措施</strong>》（Who Needs Malware? How Adversaries Use Fileless Attacks To Evade Your Security），笔者顺手对其进行了全文翻译。<br><strong>无文件攻击（Fileless attack）</strong>是<strong>不向磁盘写入可执行文件</strong>的攻击方法，难以被常规方法检测出来。根据CrowdStrike统计，“10个成功突破的攻击向量中有8个使用了无文件攻击技术。”即<strong>80%的成功入侵都使用了无文件攻击</strong>。根据二八原理，这显然是安全人员应该高度关注的技术类型。<br><strong>无文件攻击白皮书</strong>解释了<strong>无文件攻击的工作原理、传统解决方案失效的原因，以及CrowdStrike解决该难题的方法</strong>。CrowdStrike的解决方案是<strong>应用程序清单、漏洞利用阻断、攻击指标（IOA）、托管狩猎、无签名人工智能等技术的集成化方法</strong>。<br>除了全文翻译外，笔者主要在文末做了两块内容增补：一是关于CrowdStrike <strong>Threat Graph（威胁图）</strong>的技术思想，因为威胁图是CrowdStrike Falcon（猎鹰）端点保护平台的“大脑”；二是关于CrowdStrike提出的<strong>攻击指标（IOA）</strong>与传统的<strong>失陷指标（IOC）</strong>的对比。笔者认为，这两类技术领域具有战略价值。</p>
+            <div class="level is-size-7 has-text-grey">
+    <div class="level-left">
+        <i class="far fa-eye"></i>
+        <span>&nbsp;</span>
+        <span id="busuanzi_container_page_pv" style="display: inline;">
+            <span id="busuanzi_value_page_pv">0</span>
+        </span>
+    </div>
+</div>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/11/02/CrowdStrike/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+    
+<style>
+  @media screen and (min-width: 1472px) {
+    .is-2-column .container {
+        max-width: 1344px !important;
+        width: 1344px !important;
+    }
+  }
+  @media screen and (min-width: 900px) {
+    .is-1-column .container, .is-2-column .container {
+        max-width: 1344px !important;
+        width: 1344px !important;
+    }
+  }
+</style>
+
+
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-09-22T11:24:51.000Z">2020-09-22</time>
                 
                 <div class="level-item">
@@ -571,7 +708,7 @@ var _hmt = _hmt || [];
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        10
+                        11
                     </p>
                 </div>
             </div>
@@ -591,7 +728,7 @@ var _hmt = _hmt || [];
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        3
+                        4
                     </p>
                 </div>
             </div>
@@ -679,7 +816,7 @@ var _hmt = _hmt || [];
                 <span class="level-item">Network</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Network/Architecture/">
@@ -703,7 +840,7 @@ var _hmt = _hmt || [];
                 <span class="level-item">security</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li></ul></li>
             </ul>
@@ -718,6 +855,13 @@ var _hmt = _hmt || [];
                 标签
             </h3>
             <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/FilelessMalware/">
+                        <span class="tag">FilelessMalware</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Liunx/">
@@ -754,7 +898,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Liunx/" style="font-size: 10px;">Liunx</a> <a href="/tags/Raspberry-Pi/" style="font-size: 15px;">Raspberry-Pi</a> <a href="/tags/Reproduced/" style="font-size: 20px;">Reproduced</a>
+        <a href="/tags/FilelessMalware/" style="font-size: 10px;">FilelessMalware</a> <a href="/tags/Liunx/" style="font-size: 13.33px;">Liunx</a> <a href="/tags/Raspberry-Pi/" style="font-size: 16.67px;">Raspberry-Pi</a> <a href="/tags/Reproduced/" style="font-size: 20px;">Reproduced</a>
     </div>
 </div>
 
@@ -765,6 +909,19 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-11-02T07:49:16.000Z">2020-11-02</time></div>
+                    <a href="/2020/11/02/CrowdStrike/" class="has-link-black-ter is-size-6">CrowdStrike</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/security/">security</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -818,19 +975,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-06T07:04:01.000Z">2020-06-06</time></div>
-                    <a href="/2020/06/06/BeyondProd/" class="has-link-black-ter is-size-6">BeyondProd</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/security/">security</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -842,6 +986,17 @@ var _hmt = _hmt || [];
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/09/">
@@ -921,7 +1076,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Liunx/" style="font-size: 10px;">Liunx</a> <a href="/tags/Raspberry-Pi/" style="font-size: 15px;">Raspberry-Pi</a> <a href="/tags/Reproduced/" style="font-size: 20px;">Reproduced</a>
+        <a href="/tags/FilelessMalware/" style="font-size: 10px;">FilelessMalware</a> <a href="/tags/Liunx/" style="font-size: 13.33px;">Liunx</a> <a href="/tags/Raspberry-Pi/" style="font-size: 16.67px;">Raspberry-Pi</a> <a href="/tags/Reproduced/" style="font-size: 20px;">Reproduced</a>
     </div>
 </div>
 
@@ -932,6 +1087,19 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-11-02T07:49:16.000Z">2020-11-02</time></div>
+                    <a href="/2020/11/02/CrowdStrike/" class="has-link-black-ter is-size-6">CrowdStrike</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/security/">security</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -985,19 +1153,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-06T07:04:01.000Z">2020-06-06</time></div>
-                    <a href="/2020/06/06/BeyondProd/" class="has-link-black-ter is-size-6">BeyondProd</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/security/">security</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1009,6 +1164,17 @@ var _hmt = _hmt || [];
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/09/">

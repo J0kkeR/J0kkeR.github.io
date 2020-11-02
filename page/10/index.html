@@ -172,17 +172,17 @@ var _hmt = _hmt || [];
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-02T10:37:20.000Z">2019-02-02</time>
+                <time class="level-item has-text-grey" datetime="2019-02-05T12:46:00.000Z">2019-02-05</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Hardware/">Hardware</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Hardware/Raspbian/">Raspbian</a>
+                <a class="has-link-grey -link" href="/categories/Liunx/">Liunx</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Liunx/Raspbian/">Raspbian</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 560 个字)
+                    3 分钟 读完 (大约 501 个字)
                 </span>
                 
             </div>
@@ -190,96 +190,32 @@ var _hmt = _hmt || [];
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/02/02/Raspberry-Pi/">树莓派系统安装</a>
+                <a class="has-link-black-ter" href="/2019/02/05/Raspberry-Pi1/">树莓派系统基本设置</a>
             
         </h1>
         
-<div class="card widget" id="toc">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                目录
-            </h3>
-            <ul class="menu-list"><li>
-        <a class="is-flex" href="#0X00">
-        <span class="has-mr-6">1</span>
-        <span>0X00</span>
-        </a></li><li>
-        <a class="is-flex" href="#0X01">
-        <span class="has-mr-6">2</span>
-        <span>0X01</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#设置无线网连接">
-        <span class="has-mr-6">2.1</span>
-        <span>设置无线网连接</span>
-        </a></li><li>
-        <a class="is-flex" href="#开启强制HDMI输出">
-        <span class="has-mr-6">2.2</span>
-        <span>开启强制HDMI输出</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#0X02">
-        <span class="has-mr-6">3</span>
-        <span>0X02</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#通电测试">
-        <span class="has-mr-6">3.1</span>
-        <span>通电测试</span>
-        </a></li></ul></li></ul>
-        </div>
-    </div>
-</div>
-
         <div class="content">
-            <h1 id="0X00"><a href="#0X00" class="headerlink" title="0X00"></a>0X00</h1><hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">硬件准备</th>
-<th style="text-align:left"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Raspberry Pi3</td>
-<td style="text-align:left">一个</td>
-</tr>
-<tr>
-<td style="text-align:left">TF储存卡</td>
-<td style="text-align:left">推荐16GB的高速卡</td>
-</tr>
-<tr>
-<td style="text-align:left">路由器</td>
-<td style="text-align:left">一台</td>
-</tr>
-<tr>
-<td style="text-align:left">电脑</td>
-<td style="text-align:left">已连接到路由器</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">软件准备</th>
-<th style="text-align:left"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">SD Card Formatter</td>
-<td style="text-align:left"><a href="https://www.sdcard.org/chs/downloads/formatter_4/eula_windows/SDCardFormatterv5_WinEN.zip" target="_blank" rel="noopener">点击下载</a>(Windows版本)</td>
-</tr>
-<tr>
-<td style="text-align:left">Win32 Disk Imager</td>
-<td style="text-align:left"><a href="https://sourceforge.net/projects/win32diskimager/files/Archive/win32diskimager-1.0.0-install.exe/download?use_mirror=nchc" target="_blank" rel="noopener">点击进入下载链接</a></td>
-</tr>
-<tr>
-<td style="text-align:left">树莓派镜像</td>
-<td style="text-align:left"><a href="https://sourceforge.net/projects/win32diskimager/files/Archive/win32diskimager-1.0.0-install.exe/download?use_mirror=nchc" target="_blank" rel="noopener">点击进入下载链接</a></td>
-</tr>
-</tbody>
-</table>
-<p><strong>推荐这个带软件集成的桌面版本</strong><br><img src="version.png" alt=""><br></p>
+            <h2 id="Raspbian-简介"><a href="#Raspbian-简介" class="headerlink" title="Raspbian 简介"></a>Raspbian 简介</h2><hr>
+<p>Raspbian 是专门用于 ARM 卡片式计算机 Raspberry Pi® “树莓派”的操作系统。</p>
+<p>Raspberry Pi® “树莓派”是 2012 年问世的 ARM 计算机，旨在为儿童和所有的计算机爱好者提供一套廉价的编程学习与硬件 DIY 平台。树莓派基于 ARM11，具有 1080P 高清视频解析能力，附带用于硬件开发的 GPIO 接口，使用Linux操作系统。售价仅 $25~$35。</p>
+<p>Raspbian 系统是 Debian 7.0/wheezy 的定制版本。得益于 Debian从7.0/wheezy 开始引入的“带硬件浮点加速的ARM架构”(armhf)，Debian 7.0 在树莓派上的运行性能有了很大提升。Raspbian 默认使用 LXDE 桌面，内置 C 和 Python 编译器。</p>
+<p>Raspbian 是树莓派的开发与维护机构 The Raspbeery Pi Foundation “树莓派基金会”，推荐用于树莓派的首选系统。</p>
+<p>由于以下原因，Raspbian 需要单独组建软件仓库，而不能使用 Debian 的仓库：</p>
+<ul>
+<li>Debian下所有的软件包都需要用 armhf 重新编译。</li>
+<li>树莓派有部分特有的软件包，例如 BCM2835 CPU 的 GPIO 底层操作库。</li>
+<li>树莓派用户倾向于探索、尝试最新的软件。这与 Debian 软件源的策略完全不同。</li>
+</ul>
+<hr>
+<h2 id="切换到root用户"><a href="#切换到root用户" class="headerlink" title="切换到root用户"></a>切换到root用户</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su root</span><br></pre></td></tr></table></figure>
+<h3 id="修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表"><a href="#修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表" class="headerlink" title="修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表"></a>修改Raspbian的软件源以便提供更快的下载速度<a href="http://www.raspbian.org/RaspbianMirrors" target="_blank" rel="noopener">官方认证的源列表</a></h3><p><img src="list.png" alt=""><br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/apt/sources.list</span><br><span class="line">nano /etc/apt/sources.list.d/raspi.list</span><br><span class="line">apt-get update &amp;&amp; apt-get upgrade</span><br></pre></td></tr></table></figure></p>
+<p>把原来的地址行删除或者注释掉然后直接按这个格式扔进去就行</p>
+<font color="red">sources.list</font>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb 软件源地址 stretch main non-free contrib rpi</span><br><span class="line">deb-src 软件源地址 stretch main non-free contrib rpi</span><br></pre></td></tr></table></figure>
+<font color="red">raspi.list</font>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb 软件源地址 stretch main ui</span><br><span class="line">deb-src 软件源地址 stretch main ui</span><br></pre></td></tr></table></figure>
             <div class="level is-size-7 has-text-grey">
     <div class="level-left">
         <i class="far fa-eye"></i>
@@ -295,7 +231,7 @@ var _hmt = _hmt || [];
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/02/02/Raspberry-Pi/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/2019/02/05/Raspberry-Pi1/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -320,7 +256,7 @@ var _hmt = _hmt || [];
         <div class="pagination-previous">
             <a class="is-flex-grow has-text-black-ter" href="/page/9/">上一页</a>
         </div>
-        <div class="pagination-next is-invisible is-hidden-mobile">
+        <div class="pagination-next">
             <a class="is-flex-grow has-text-black-ter" href="/page/11/">下一页</a>
         </div>
         <ul class="pagination-list is-hidden-mobile">
@@ -332,6 +268,8 @@ var _hmt = _hmt || [];
             <li><a class="pagination-link has-text-black-ter" href="/page/9/">9</a></li>
             
             <li><a class="pagination-link is-current" href="/page/10/">10</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/11/">11</a></li>
             
         </ul>
     </nav>
@@ -381,7 +319,7 @@ var _hmt = _hmt || [];
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        10
+                        11
                     </p>
                 </div>
             </div>
@@ -401,7 +339,7 @@ var _hmt = _hmt || [];
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        3
+                        4
                     </p>
                 </div>
             </div>
@@ -489,7 +427,7 @@ var _hmt = _hmt || [];
                 <span class="level-item">Network</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Network/Architecture/">
@@ -513,7 +451,7 @@ var _hmt = _hmt || [];
                 <span class="level-item">security</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li></ul></li>
             </ul>
@@ -528,6 +466,13 @@ var _hmt = _hmt || [];
                 标签
             </h3>
             <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/FilelessMalware/">
+                        <span class="tag">FilelessMalware</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Liunx/">
@@ -564,7 +509,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Liunx/" style="font-size: 10px;">Liunx</a> <a href="/tags/Raspberry-Pi/" style="font-size: 15px;">Raspberry-Pi</a> <a href="/tags/Reproduced/" style="font-size: 20px;">Reproduced</a>
+        <a href="/tags/FilelessMalware/" style="font-size: 10px;">FilelessMalware</a> <a href="/tags/Liunx/" style="font-size: 13.33px;">Liunx</a> <a href="/tags/Raspberry-Pi/" style="font-size: 16.67px;">Raspberry-Pi</a> <a href="/tags/Reproduced/" style="font-size: 20px;">Reproduced</a>
     </div>
 </div>
 
@@ -575,6 +520,19 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-11-02T07:49:16.000Z">2020-11-02</time></div>
+                    <a href="/2020/11/02/CrowdStrike/" class="has-link-black-ter is-size-6">CrowdStrike</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/security/">security</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -628,19 +586,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-06T07:04:01.000Z">2020-06-06</time></div>
-                    <a href="/2020/06/06/BeyondProd/" class="has-link-black-ter is-size-6">BeyondProd</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/security/">security</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -652,6 +597,17 @@ var _hmt = _hmt || [];
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/09/">
@@ -731,7 +687,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Liunx/" style="font-size: 10px;">Liunx</a> <a href="/tags/Raspberry-Pi/" style="font-size: 15px;">Raspberry-Pi</a> <a href="/tags/Reproduced/" style="font-size: 20px;">Reproduced</a>
+        <a href="/tags/FilelessMalware/" style="font-size: 10px;">FilelessMalware</a> <a href="/tags/Liunx/" style="font-size: 13.33px;">Liunx</a> <a href="/tags/Raspberry-Pi/" style="font-size: 16.67px;">Raspberry-Pi</a> <a href="/tags/Reproduced/" style="font-size: 20px;">Reproduced</a>
     </div>
 </div>
 
@@ -742,6 +698,19 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-11-02T07:49:16.000Z">2020-11-02</time></div>
+                    <a href="/2020/11/02/CrowdStrike/" class="has-link-black-ter is-size-6">CrowdStrike</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/security/">security</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -795,19 +764,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-06T07:04:01.000Z">2020-06-06</time></div>
-                    <a href="/2020/06/06/BeyondProd/" class="has-link-black-ter is-size-6">BeyondProd</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/security/">security</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -819,6 +775,17 @@ var _hmt = _hmt || [];
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/09/">

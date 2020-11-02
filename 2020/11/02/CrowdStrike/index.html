@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>CrowdStrike - J0kkeR</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    <meta name="description" content="转载自微信公众号:网络安全观 本文内容仅供学习交流，如有侵权立即删除。 前言CrowdStrike是端点保护平台（EPP）的最强者，是云交付的下一代端点保护的领导者。由于CrowdStrike邮件推送了“无文件攻击白皮书”《谁需要恶意软件？对手如何使用无文件攻击来规避你的安全措施》（Who Needs Malware? How Adversaries Use Fileless Attacks To">
+<meta name="keywords" content="FilelessMalware">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CrowdStrike">
+<meta property="og:url" content="https://www.jlovek.cn/2020/11/02/CrowdStrike/index.html">
+<meta property="og:site_name" content="J0kkeR">
+<meta property="og:description" content="转载自微信公众号:网络安全观 本文内容仅供学习交流，如有侵权立即删除。 前言CrowdStrike是端点保护平台（EPP）的最强者，是云交付的下一代端点保护的领导者。由于CrowdStrike邮件推送了“无文件攻击白皮书”《谁需要恶意软件？对手如何使用无文件攻击来规避你的安全措施》（Who Needs Malware? How Adversaries Use Fileless Attacks To">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://www.jlovek.cn/2020/11/02/CrowdStrike/CrowdStrike.png">
+<meta property="og:image" content="https://www.jlovek.cn/2020/11/02/CrowdStrike/webshell.png">
+<meta property="og:image" content="https://www.jlovek.cn/2020/11/02/CrowdStrike/poweshell.png">
+<meta property="og:image" content="https://www.jlovek.cn/2020/11/02/CrowdStrike/stickykeys.png">
+<meta property="og:image" content="https://www.jlovek.cn/2020/11/02/CrowdStrike/epp.png">
+<meta property="og:image" content="https://www.jlovek.cn/2020/11/02/CrowdStrike/CrowdStrikeFalcon.png">
+<meta property="og:image" content="https://www.jlovek.cn/2020/11/02/CrowdStrike/ThreatGraph.png">
+<meta property="og:image" content="https://www.jlovek.cn/2020/11/02/CrowdStrike/CrowdStrikeThreatGraph.png">
+<meta property="og:image" content="https://www.jlovek.cn/2020/11/02/CrowdStrike/node.png">
+<meta property="og:image" content="https://www.jlovek.cn/2020/11/02/CrowdStrike/IOA&IOC1.png">
+<meta property="og:image" content="https://www.jlovek.cn/2020/11/02/CrowdStrike/IOA&IOC2.png">
+<meta property="og:updated_time" content="2020-11-02T08:38:23.383Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CrowdStrike">
+<meta name="twitter:description" content="转载自微信公众号:网络安全观 本文内容仅供学习交流，如有侵权立即删除。 前言CrowdStrike是端点保护平台（EPP）的最强者，是云交付的下一代端点保护的领导者。由于CrowdStrike邮件推送了“无文件攻击白皮书”《谁需要恶意软件？对手如何使用无文件攻击来规避你的安全措施》（Who Needs Malware? How Adversaries Use Fileless Attacks To">
+<meta name="twitter:image" content="https://www.jlovek.cn/2020/11/02/CrowdStrike/CrowdStrike.png">
+
+
+
+
+
+<link rel="icon" href="/images/tb.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-178521587-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-178521587-1');
+</script>
+
+
+    
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?7fed72967ab92d97f11277419fc4adae";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+<style type="text/css">.image.is-128x128 {border-radius: 100% !important;}</style>
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logoJ.png" alt="CrowdStrike" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">主页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="/about">关于我</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-12-widescreen has-order-2 column-main">
+<style>
+  @media screen and (min-width: 1472px) {
+    .is-2-column .container {
+        max-width: 1344px !important;
+        width: 1344px !important;
+    }
+  }
+  @media screen and (min-width: 900px) {
+    .is-1-column .container, .is-2-column .container {
+        max-width: 1344px !important;
+        width: 1344px !important;
+    }
+  }
+</style>
+
+
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-11-02T07:49:16.000Z">2020-11-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Network/security/">security</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 小时 读完 (大约 6708 个字)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                CrowdStrike
+            
+        </h1>
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#前言">
+        <span class="has-mr-6">1</span>
+        <span>前言</span>
+        </a></li><li>
+        <a class="is-flex" href="#什么是无文件攻击？">
+        <span class="has-mr-6">2</span>
+        <span>什么是无文件攻击？</span>
+        </a></li><li>
+        <a class="is-flex" href="#真实案例：一个无文件入侵的解剖">
+        <span class="has-mr-6">3</span>
+        <span>真实案例：一个无文件入侵的解剖</span>
+        </a></li><li>
+        <a class="is-flex" href="#作案工具：真实世界的无文件恶意软件">
+        <span class="has-mr-6">4</span>
+        <span>作案工具：真实世界的无文件恶意软件</span>
+        </a></li><li>
+        <a class="is-flex" href="#为何传统技术无法抵御无文件攻击">
+        <span class="has-mr-6">5</span>
+        <span>为何传统技术无法抵御无文件攻击</span>
+        </a></li><li>
+        <a class="is-flex" href="#CrowdStrike的解决方案">
+        <span class="has-mr-6">6</span>
+        <span>CrowdStrike的解决方案</span>
+        </a></li><li>
+        <a class="is-flex" href="#IOA（攻击指标）的力量">
+        <span class="has-mr-6">7</span>
+        <span>IOA（攻击指标）的力量</span>
+        </a></li><li>
+        <a class="is-flex" href="#托管狩猎">
+        <span class="has-mr-6">8</span>
+        <span>托管狩猎</span>
+        </a></li><li>
+        <a class="is-flex" href="#结论">
+        <span class="has-mr-6">9</span>
+        <span>结论</span>
+        </a></li><li>
+        <a class="is-flex" href="#关于CrowdStrike">
+        <span class="has-mr-6">10</span>
+        <span>关于CrowdStrike</span>
+        </a></li><li>
+        <a class="is-flex" href="#笔者增补：威胁图和攻击指标">
+        <span class="has-mr-6">11</span>
+        <span>笔者增补：威胁图和攻击指标</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
+        <div class="content">
+            <p><strong>转载自微信公众号:网络安全观</strong></p>
+<p><strong>本文内容仅供学习交流，如有侵权立即删除。</strong></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>CrowdStrike是端点保护平台（EPP）的最强者，是云交付的下一代端点保护的领导者。由于CrowdStrike邮件推送了<strong>“无文件攻击白皮书”</strong>《谁需要恶意软件？<strong>对手如何使用无文件攻击来规避你的安全措施</strong>》（Who Needs Malware? How Adversaries Use Fileless Attacks To Evade Your Security），笔者顺手对其进行了全文翻译。<br><strong>无文件攻击（Fileless attack）</strong>是<strong>不向磁盘写入可执行文件</strong>的攻击方法，难以被常规方法检测出来。根据CrowdStrike统计，“10个成功突破的攻击向量中有8个使用了无文件攻击技术。”即<strong>80%的成功入侵都使用了无文件攻击</strong>。根据二八原理，这显然是安全人员应该高度关注的技术类型。<br><strong>无文件攻击白皮书</strong>解释了<strong>无文件攻击的工作原理、传统解决方案失效的原因，以及CrowdStrike解决该难题的方法</strong>。CrowdStrike的解决方案是<strong>应用程序清单、漏洞利用阻断、攻击指标（IOA）、托管狩猎、无签名人工智能等技术的集成化方法</strong>。<br>除了全文翻译外，笔者主要在文末做了两块内容增补：一是关于CrowdStrike <strong>Threat Graph（威胁图）</strong>的技术思想，因为威胁图是CrowdStrike Falcon（猎鹰）端点保护平台的“大脑”；二是关于CrowdStrike提出的<strong>攻击指标（IOA）</strong>与传统的<strong>失陷指标（IOC）</strong>的对比。笔者认为，这两类技术领域具有战略价值。</p>
+<a id="more"></a>
+<p>随着安全措施在检测和阻止恶意软件和网络攻击方面越来越出色，对手和网络犯罪分子被迫不断开发新技术来逃避检测。其中一种高级技术涉及<strong>“无文件”（fileless）攻击，即不向磁盘写入可执行文件</strong>。这类攻击特别有效地躲避了传统防病毒（AV）解决方案，因为传统防病毒（AV）方法寻找被保存到磁盘上的文件并扫描这些文件以确定它们是否恶意。</p>
+<p>虽然无文件攻击并不新鲜，但它们正变得越来越普遍。在2016年的调查中，CrowdStrike Services事件响应团队发现，<strong>10个成功入侵的攻击向量中有8个使用了无文件攻击技术</strong>。为了帮助您了解无文件攻击所带来的风险，本白皮书解释了无文件攻击的工作原理、当前解决方案对其无能为力的原因，以及CrowdStrike解决这一难题的行之有效的方法。</p>
+<p><img src="CrowdStrike.png" alt=""></p>
+<h3 id="什么是无文件攻击？"><a href="#什么是无文件攻击？" class="headerlink" title="什么是无文件攻击？"></a>什么是无文件攻击？</h3><p>当攻击者通过消除将PE（可移植可执行文件）复制到磁盘驱动器的传统步骤来逃避检测时，就会发生无文件或无恶意软件的攻击。<strong>有多种技术可以采取这种方式危害系统</strong>。</p>
+<p><strong>1）漏洞利用和漏洞利用工具包</strong>，通常通过利用操作系统（OS）或已安装应用程序中存在的漏洞，<strong>直接在内存中执行攻击</strong>。</p>
+<p><strong>2）使用盗用的凭证</strong>，是发起无文件攻击的另一种普遍方法。Verizon在其2017年的DBIR（数据泄露调查报告）中发现，<strong>81%的数据泄露涉及弱口令、默认口令或被盗口令</strong>，比上一年增加了18%。这使得攻击者能够像普通用户一样访问系统。</p>
+<p><strong>3）</strong>一旦实现初步突破，对手就可以<strong>依赖操作系统本身提供的工具</strong>，如Windows管理工具和Windows PowerShell，以执行进一步的操作，而不必将文件保存到磁盘。例如，它们可以通过在注册表、内核中隐藏代码，或者通过创建允许它们随意访问系统的用户帐户来<strong>建立持久化</strong>，而无需向磁盘写入任何内容。</p>
+<p>在安全行业，对上述这些技术的使用，通常被称为“<strong>living off the land</strong>”（离地生存？生存手段？）。</p>
+<h3 id="真实案例：一个无文件入侵的解剖"><a href="#真实案例：一个无文件入侵的解剖" class="headerlink" title="真实案例：一个无文件入侵的解剖"></a>真实案例：一个无文件入侵的解剖</h3><p>通过展示CrowdStrike Services事件响应团队发现的一个真实的案例，我们可以检查端到端的无恶意软件入侵是什么样子。</p>
+<p>在本例中，首个目标是使用Microsoft ISS并运行SQL服务器数据库的web服务器。对于最初的入侵，攻击者使用了一个web shell，一个可以被上传到web服务器并在其上执行的简短脚本。脚本可以用web服务器支持的任何语言编写，比如Perl、Python、ASP或PHP。<strong>Web Shell</strong>在此类攻击中很流行，因为它们可以通过<strong>利用系统上存在的漏洞直接加载到内存中</strong>，而无需将任何内容写入磁盘。在这一特定的攻击中，对手使用SQL注入，将其web shell嵌入到服务器。</p>
+<p>WEB Shell允许使用web浏览器来远程访问系统。它们可以用ASP或PHP或任何其他web脚本语言编写，代码可以非常小。如下所示：</p>
+<p><img src="webshell.png" alt=""></p>
+<p>由于web服务器<strong>没有正确检查转义字符</strong>，攻击者能够简单地将web shell回传到服务器上。所用的web shell，名为“<strong>China Chopper</strong>”（中国菜刀/直升机），包含了JavaScript命令，值得注意的是它只使用了72个字符。在内存中执行web shell，使攻击者能够使用Chopper用户界面，对web服务器执行任意命令。通过对web服务器的完全远程访问，攻击者通过执行编码的PowerShell命令，来窃取凭据。</p>
+<p>第一步是从远程服务器下载脚本，将脚本直接加载到内存中，然后执行它。这个脚本反过来窃取了缓存在web服务器内存中的所有纯文本密码。在几秒钟内，攻击者获得了系统上所有帐户的多个用户名和密码。</p>
+<p><strong>PowerShell是一个合法的Windows工具</strong>，它允许攻击者在受损系统上执行任何操作，而不必在磁盘上写入恶意软件。为了进一步做混淆，攻击者可以对其PowerShell脚本进行编码，如下所示：</p>
+<p><img src="poweshell.png" alt=""></p>
+<p>下一步是让攻击者在服务器上实现<strong>持久化</strong>。为了在不需要任何恶意软件的情况下执行此操作，攻击者使用了一种称为“<strong>粘滞键</strong>”（Sticky Keys）的技术。通过修改Windows注册表中的一行，攻击者可以使用PowerShell或WMI命令，轻松完成此操作，从而将Windows屏幕键盘进程，设置为<strong>调试模式</strong>。</p>
+<p><strong>粘滞键（Sticky Keys）</strong>是使攻击者<strong>无需登录凭据</strong>即可<strong>访问命令shell</strong>的注册表项。如下所示：</p>
+<p><img src="stickykeys.png" alt=""></p>
+<p>当设置为调试模式时，屏幕键盘允许具有远程访问权限的任何人，以系统权限打开命令行，而无需登录。一旦设置了该注册表项，攻击者可以通过打开到web服务器的远程桌面连接，随时返回。此外，访问系统而<strong>不在Windows事件历史记录中生成登录事件</strong>，会使攻击者的行为几乎无法追踪。</p>
+<p>现在小结一下，本案例中，<strong>在不同的攻击阶段所使用的文件技术</strong>包括：</p>
+<ol>
+<li><p><strong>初始入侵</strong>：</p>
+<p>针对Web服务器的<strong>SQL注入</strong>攻击；</p>
+</li>
+<li><p><strong>命令与控制（C2）</strong>：</p>
+<p>“中国菜刀/直升机”的<strong>Web Shell</strong>；</p>
+</li>
+<li><p><strong>提升权限</strong>：</p>
+<p>使用<strong>PowerShell脚本</strong>转储<strong>凭据</strong>；</p>
+</li>
+<li><p><strong>建立持久化</strong>：</p>
+<p>修改<strong>注册表</strong>粘滞键技术。</p>
+</li>
+</ol>
+<h3 id="作案工具：真实世界的无文件恶意软件"><a href="#作案工具：真实世界的无文件恶意软件" class="headerlink" title="作案工具：真实世界的无文件恶意软件"></a>作案工具：真实世界的无文件恶意软件</h3><p>从上面的案例中，我们已经了解了端到端的无文件攻击是如何发生的。在攻击过程中，对手还可以结合其他技术，使用无文件工具和方法。</p>
+<p>无文件恶意软件经常使用的工具和技术包括：</p>
+<ul>
+<li>漏洞利用工具包</li>
+<li>利用合法工具，如WMI和PowerShell</li>
+<li>使用被盗凭证</li>
+<li>注册表驻留恶意软件</li>
+<li>内存型（Memory-only）恶意软件</li>
+</ul>
+<p><strong>1）漏洞利用工具包（Exploit kits）</strong></p>
+<p>漏洞利用是一种允许攻击者利用操作系统或应用程序漏洞来访问系统的技术。<strong>漏洞利用是一种高效的无文件技术</strong>，因为它们可以直接注入内存中，而无需将任何内容写入磁盘。</p>
+<p>通过允许攻击者自动化和大规模执行初始突破，漏洞利用工具包使得攻击者的生活更轻松、工作更高效。<strong>所需要做的只是，诱使受害者进入漏洞利用工具包服务器</strong>，办法通常是网络钓鱼或社会工程。</p>
+<p>这些工具包通常提供对许多漏洞的攻击，以及一个管理控制台，一旦成功利用漏洞，攻击者就可以控制失陷的系统。有些漏洞利用工具包甚至提供了扫描受害者系统中的漏洞的功能，因此可以快速构建并启动成功的漏洞攻击。</p>
+<p><strong>2）注册表驻留恶意软件</strong></p>
+<p>注册表驻留恶意软件是安装在Windows注册表中的恶意软件，以便在逃避检测的同时，保持持久性。第一种是<strong>Poweliks</strong>，此后就出现了许多变体。一些变体，如Kovter，使用了类似的注册表隐藏技术，来保持不被发现。Poweliks<strong>调用C2（命令和控制）服务器</strong>，攻击者可以从该服务器向受损系统发送进一步的指令。所有这些操作，都可以在没有任何文件写入磁盘的情况下进行。</p>
+<p><strong>3）内存型（Memory-only）恶意软件</strong></p>
+<p>有些恶意软件只存在于内存中，以逃避检测。新版本的<strong>Duqu蠕虫</strong>就是这种情况，它只驻留在内存中，不会被发现。Duqu 2.0有两个版本：第一个是后门，它允许攻击者在组织中站稳脚跟。如果攻击者认为目标值得攻击，他可以使用Duqu 2.0的高级版本，该版本提供了诸如侦察、横向移动、数据渗出等附加功能。Duqu2.0以成功攻破电信行业的公司以及至少一家知名的安全软件提供商而闻名。</p>
+<p><strong>4）无文件型勒索软件</strong></p>
+<p>甚至勒索软件攻击者，现在也在使用无文件技术，来实现他们的目标。在这类勒索软件中，<strong>恶意代码要么嵌入文档中以使用本机脚本语言（如宏），要么使用漏洞直接写入内存</strong>。然后，勒索软件<strong>使用合法的管理工具如PowerShell，来加密人质文件</strong>，而所有这些都不需要写入磁盘。</p>
+<h3 id="为何传统技术无法抵御无文件攻击"><a href="#为何传统技术无法抵御无文件攻击" class="headerlink" title="为何传统技术无法抵御无文件攻击"></a>为何传统技术无法抵御无文件攻击</h3><p>由于传统安全解决方案极难检测到无文件攻击，因此无文件攻击正在增加。让我们来看看，为什么当今市场上的一些端点保护技术，对这些无恶意软件入侵如此脆弱。</p>
+<p><strong>1）传统防病毒（AV）</strong>旨在寻找已知恶意软件的特征码。由于无文件攻击没有恶意软件，所以AV没有可检测的特征码。</p>
+<p><strong>2）基于机器学习（ML）</strong>的反恶意软件方法，在应对无文件攻击时，面临着与传统AV相同的挑战。<strong>ML动态分析</strong>未知文件，并将其区分为好的或坏的。但是我们已经注意到，在无文件攻击中，<strong>没有要分析的文件</strong>，因此ML无法提供帮助。</p>
+<p><strong>3）白名单方法</strong>包括列出一台机器上所有良好的进程，以防止未知进程执行。无文件攻击的问题在于，它们利用易受攻击的合法白名单应用程序，并利用内置的操作系统可执行文件。阻止用户和操作系统共同依赖的应用程序，并不是一个好的选项。</p>
+<p><strong>4）使用失陷指标（IOC）工具</strong>来防止无文件攻击也不是很有效。本质上，IOC类似于传统的AV签名，因为它们是攻击者留下的已知恶意制品。然而，由于它们利用合法的进程，并且在内存中操作，所以无文件攻击不会留下制品，因此IOC工具几乎找不到任何东西。</p>
+<p><strong>5）另一种方法涉及沙箱</strong>，它可以采取多种形式，包括基于网络的爆破和微虚拟化。由于无文件攻击不使用PE文件，因此沙盒没有什么可爆破的。即便真有东西被发送到沙箱，因为无文件攻击通常会劫持合法进程，大多数沙箱也都会忽略它。</p>
+<h3 id="CrowdStrike的解决方案"><a href="#CrowdStrike的解决方案" class="headerlink" title="CrowdStrike的解决方案"></a>CrowdStrike的解决方案</h3><p>正如我们所看到的，如果您依赖基于签名的方法、沙盒、白名单甚至机器学习保护方法，那么想检测无文件技术是非常有挑战性的。</p>
+<p>为了抵御秘密的、无文件的攻击，<strong>CrowdStrike独特地将多种方法结合到一个强大的集成式方法中</strong>，提供了无与伦比的端点保护。<strong>CrowdStrike Falcon平台</strong>通过单个的<strong>轻量级代理</strong>提供了<strong>云原生的下一代端点保护</strong>，并提供一系列互补的预防和检测方法：</p>
+<ul>
+<li><p><strong>应用程序清单</strong>（Application inventory）：</p>
+<p>可以发现在您的环境中运行的任何应用程序，帮助您找到漏洞，以便您可以修补或更新它们，使之不会成为漏洞利用工具包的目标。</p>
+</li>
+<li><p><strong>漏洞利用阻断</strong>（Exploit blocking）：</p>
+<p>通过未修补漏洞的漏洞利用方法，来阻断无文件攻击的执行。</p>
+</li>
+<li><p><strong>攻击指标</strong>（<strong>IOA</strong>，Indicators of Attack）：</p>
+<p><strong>在攻击的早期阶段，识别并阻止恶意活动</strong>，以免其完全执行并造成损害。此能力还可以防止那些新的勒索软件类别，那些勒索软件不使用文件加密受害者系统。</p>
+</li>
+<li><p><strong>托管狩猎</strong>（Managed hunting）：</p>
+<p>全天候地主动搜索由于无文件技术而产生的恶意活动。</p>
+</li>
+</ul>
+<h3 id="IOA（攻击指标）的力量"><a href="#IOA（攻击指标）的力量" class="headerlink" title="IOA（攻击指标）的力量"></a>IOA（攻击指标）的力量</h3><p>IOA之所以引人注目，是因为它们<strong>提供了针对无文件攻击的独特的主动预防能力</strong>。<strong>IOA寻找攻击可能正在进行的迹象</strong>，<strong>而不是关心攻击的步骤是如何执行的</strong>。这些迹象可以包括代码执行、试图隐身、横向移动等等<strong>。</strong>如何启动或执行这些步骤对IOAs来说并不重要<strong>。例如，对于IOA来说，一个活动是从驱动器上复制的文件启动的，还是从无文件技术启动的，都无关紧要。</strong>IOA关注的是所执行的行为、它们之间的关系、它们的顺序、它们的依赖性，将它们视为揭示一系列事件背后真实意图和目的的指标<strong>。</strong>IOA不关注攻击者使用的特定工具和恶意软件。</p>
+<p>此外，在无文件攻击的情况下，恶意代码可以利用诸如PowerShell之类的合法脚本语言，而无需写入磁盘。正如我们所看到的，这对于基于签名的方法、白名单、沙箱甚至机器学习来说都是一个挑战。相比之下，<strong>IOA检测恶意软件或攻击完成其任务所必须执行的事件序列</strong>。这可以暴露最隐秘的无文件方法，因此它们可以被迅速处理。</p>
+<p>最后，由于IOA会查看意图、上下文、活动序列，因此<strong>即使恶意活动是使用合法帐户实施的，也可以检测和阻止这些活动</strong>，攻击者使用窃取的凭据时通常会出现这种情况。</p>
+<p>所有这些使得<strong>IOA成为防止无文件恶意软件攻击的突破口</strong>。IOA不再基于磁盘上可执行文件的存在与否，来开展无文件攻击这场徒劳的战斗，而是在<strong>造成任何损害之前</strong>监视、检测、阻止此类攻击的影响。</p>
+<h3 id="托管狩猎"><a href="#托管狩猎" class="headerlink" title="托管狩猎"></a>托管狩猎</h3><p>托管狩猎（Managed Hunt）是针对文件攻击的另一种独特而有效的防御措施。<strong>Falcon OverWatch</strong>（猎鹰看守）是Falcon平台的<strong>威胁搜索组件</strong>，它提供了一个<strong>额外的保护层</strong>，来抵御无文件攻击。</p>
+<p>利用Falcon平台的强大功能，OverWatch（看守）团队全天候主动狩猎威胁，监控客户的环境，并狩猎那些标准安全技术无法检测到但可能表明正在发生攻击的狡猾活动。Falcon OverWatch确保即使是最复杂和最隐蔽的攻击，也能在发生时被发现。它通过狩猎和识别难以检测的、复杂的、尖端的攻击，生成有意义的警报和精确的指导性补救建议，从而提高您对抗无文件技术的效率。</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>由于漏洞利用工具包的存在，导致了攻击组合的高效性和易创建性，很可能会提高无文件黑客技术的普及率。不幸的是，鉴于传统杀毒软件无法阻止无文件攻击，犯罪黑客越来越可能将注意力集中在这些隐形技术上。因此，安全专家需要在他们的安全策略中，考虑无文件恶意软件和无文件攻击的存在。</p>
+<p>正如本文所解释的那样，传统的安全措施在面对无文件攻击时可能不够有效，需要新的保护方法。CrowdStrike Falcon（猎鹰平台）提供了一种全面的解决方案，不仅可以防御无文件攻击，而且还可以很好地防御已知和未知的恶意软件威胁。</p>
+<h3 id="关于CrowdStrike"><a href="#关于CrowdStrike" class="headerlink" title="关于CrowdStrike"></a>关于CrowdStrike</h3><p><strong>CrowdStrike是云交付的下一代端点保护的领导者</strong>。CrowdStrike Falcon平台在整个企业范围内提供即时可视性和保护，并防止对网络内外端点的攻击。CrowdStrike Falcon可以在几分钟内部署，立即提供可操作性情报和实时保护。Falcon将下一代AV与最佳端点检测和响应技术无缝结合，并支持全天候的托管狩猎。</p>
+<p>它的<strong>云基础设施</strong>和<strong>单代理架构</strong>消除了复杂性，增加了可扩展性、可管理性、速度。CrowdStrike Falcon利用精妙的<strong>无签名人工智能/机器学习</strong>和<strong>基于攻击指标（IOA）的威胁预防</strong>，来保护客户免受所有类型的网络攻击，实时阻止已知和未知的威胁。通过CrowdStrike <strong>Threat Graph</strong>（威胁图）赋能，Falcon立即关联来自全球的400亿个安全事件，以立即预防和检测威胁。</p>
+<p>（原白皮书内容，到此结束）</p>
+<h3 id="笔者增补：威胁图和攻击指标"><a href="#笔者增补：威胁图和攻击指标" class="headerlink" title="笔者增补：威胁图和攻击指标"></a>笔者增补：威胁图和攻击指标</h3><p><strong>1）端点保护平台（EPP)</strong></p>
+<p>在《2019年<strong>端点保护平台（EPP）</strong>魔力象限》中，CrowdStrike占据<strong>领导者</strong>地位，而且处于“愿景完整性”横轴最前沿的位置。如下图所示：</p>
+<p><img src="epp.png" alt=""></p>
+<p><strong>图1-端点保护平台（EPP）的魔力象限</strong></p>
+<p>CrowdStrike将自身定位为<strong>云交付</strong>的<strong>下一代端点保护</strong>的领导者。CrowdStrike是第一家也是唯一一家统一了<strong>下一代防病毒、端点检测和响应（EDR）、IT卫生、漏洞评估、全天候托管狩猎服务</strong>的公司——全部通过<strong>一个轻量级代理</strong>提供，彻底革新了端点保护。CrowdStrike的<strong>端点保护平台</strong>（EPP）如下图所示：</p>
+<p><img src="CrowdStrikeFalcon.png" alt=""></p>
+<p><strong>图2-CrowdStrike Falcon（猎鹰）平台</strong></p>
+<p><strong>2）威胁图（Threat Graph）</strong></p>
+<p>CrowdStrike Falcon（猎鹰）平台由两种紧密集成的<strong>专有技术</strong>组成：一个是易于部署的智能<strong>轻量级代理</strong>；另一个是基于云的动态<strong>图数据库</strong>，即上面提到的<strong>威胁图</strong>（Threat Graph）。下图展示了威胁图的大致工作原理：</p>
+<p><img src="ThreatGraph.png" alt=""></p>
+<p><strong>图3-威胁图的工作原理</strong></p>
+<p>下表进一步梳理了威胁图的主要特性：</p>
+<p><img src="CrowdStrikeThreatGraph.png" alt=""></p>
+<p><strong>表4-CrowdStrike Threat Graph（威胁图）的主要特性</strong></p>
+<p>阻止突破行为的最大挑战之一在于<strong>筛选大量数据</strong>，即众所周知的“<strong>大海捞针</strong>”——发现表明攻击即将发生或正在进行的蛛丝马迹。针对此挑战，CrowdStrike采用了<strong>基于图数据库</strong>（参见上表中第一行）的革新技术（类似于Facebook和Google开发的技术），来检测已知和未知的威胁。下图展示了图数据库的结构的示例：</p>
+<p><img src="node.png" alt=""></p>
+<p><strong>图5-示例：图数据库的结构</strong></p>
+<p>在图数据库中，每个<strong>对象</strong>（称为<strong>顶点</strong>（vertex）或<strong>节点</strong>（node））可以有许多关系。这些<strong>关系</strong>被称为“<strong>边缘</strong>”（Edge），例如，上面的图模型代表了一组同事之间的社交互动和味觉偏好。Lisa和Marie表示顶点，它们之间的关系被视为一条边。</p>
+<p><strong>传统数据库</strong>（如关系数据库）被设计成将数据放入预定义的模式中，如果新的数据类型或新的关系在原始设计中没有考虑到，那么信息将不会被存储。简单地说，<strong>对于传统的数据库模式，不适合的数据会丢失</strong>。而<strong>安全数据通常是非结构化和意外类型的</strong>，并不适合传统数据库进行存储。</p>
+<p>相反，<strong>图数据库</strong>可以轻松地存储和跟踪安全事件。在图数据库中，每一段<strong>数据</strong>及其独特<strong>属性</strong>，都存储为单独的<strong>对象</strong>。数据及其属性被附加到图中，使得图数据库能够无限增长和<strong>接受新类型的数据</strong>。因此，可以很容易地用属性和值填充图数据库，而无需遵循预定模式，还能够立即被搜索到。这使得图数据库非常擅长映射<strong>关系</strong>和揭示网络中实体之间的“<strong>相互关联性</strong>”。</p>
+<p><strong>3）攻击指标（IOA）vs. 失陷指标（IOC）</strong></p>
+<p>IOC与IOA的根本区别如下图所示：</p>
+<ul>
+<li><p><strong>IOC（失陷指标）构成了一种被动姿态：</strong>恶意软件、特征码、漏洞利用、漏洞、IP地址的存在，是一个<strong>突破已经发生后</strong>留下的典型证据。</p>
+</li>
+<li><p><strong>IOA（攻击指标）代表了一种主动姿态：</strong>防御者正在寻找攻击可能正在进行的早期警告信号，例如代码执行、持久化、隐身、命令控制、网络内的横向移动。</p>
+<p><img src="IOA&amp;IOC1.png" alt=""></p>
+<p><strong>图6-攻击指标（IOA）vs. 失陷指标（IOC）</strong></p>
+</li>
+</ul>
+<p>对于两种指标的区别，打一个比方：</p>
+<ul>
+<li><strong>IOC（失陷指标）</strong>是<strong>犯罪发生后</strong>到达犯罪现场并根据<strong>留下的证据</strong>试图重现犯罪活动；</li>
+<li><strong>IOA（攻击指标）</strong>则是提醒攻击即将发生或正在进行的更微妙的迹象。</li>
+</ul>
+<p>对于两种指标的区别，再打一个比方（如下图所示）：</p>
+<ul>
+<li><p><strong>IOC（失陷指标）</strong>像是<strong>放大镜</strong>；</p>
+</li>
+<li><p><strong>IOA（攻击指标）</strong>像是<strong>摄像机</strong>。</p>
+<p><img src="IOA&amp;IOC2.png" alt=""></p>
+<p><strong>图7-攻击指标（IOA）vs. 失陷指标（IOC）</strong></p>
+</li>
+</ul>
+<p>如上图所示，IOA（攻击指标）就像<strong>摄像机</strong>一样，能够提供实时记录和可见性，相当于你在（远程）实时观察家中的摄像机。IOA通过记录每一个动作发生的过程，准确地向你展示一个对手是如何潜入你的环境、访问文件、转储密码、横向移动、偷走数据。</p>
+<p><em>笔者认同，真正的<strong>下一代端点保护平台</strong>，应该将传统的基于<strong>IOC</strong>的端点保护技术与<strong>IOA分析技术</strong>相结合，以解决全范围的各种攻击，包括<strong>已知威胁</strong>和<strong>未知威胁</strong>，<strong>有恶意软件</strong>和<strong>无恶意软件</strong>（即本文主题——<strong>无文件攻击</strong>）。</em></p>
+<p>（本篇完）</p>
+
+            <div class="level is-size-7 has-text-grey">
+    <div class="level-left">
+        <i class="far fa-eye"></i>
+        <span>&nbsp;</span>
+        <span id="busuanzi_container_page_pv" style="display: inline;">
+            <span id="busuanzi_value_page_pv">0</span>
+        </span>
+    </div>
+</div>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/FilelessMalware/">FilelessMalware</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">如果觉得我的文章对您有用，请随缘打赏~您的支持将鼓励我继续创作！</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/zfb.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wx.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/09/22/提高钓鱼成功率/">
+                <span class="level-item">提高钓鱼成功率</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'NnB3IeC244Rt4VY9rThBjI1H-gzGzoHsz',
+        app_key: '3TLMC7bqq2H82vuxQIO7OKVu',
+        placeholder: '随便说点啥都行~'
+    });
+</script>
+
+    </div>
+</div>
+
+
+</div>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logoJ.png" alt="CrowdStrike" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Pe1Ha0&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                </p>
+            </div>
+            <div class="level-end">
+            <span id="busuanzi_container_site_uv">
+    ❤️ 感谢
+    <span id="busuanzi_value_site_uv">0</span>
+    位小伙伴的
+</span>
+<span id="busuanzi_container_site_pv">
+    <span id="busuanzi_value_site_pv">0</span>
+    次陪伴
+</span>
+</div>
+            
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {matchFontHeight: false},
+        SVG: {matchFontHeight: false},
+        CommonHTML: {matchFontHeight: false}
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
