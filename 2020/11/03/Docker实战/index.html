@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>Docker实战 - J0kkeR</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    <meta name="description" content="转载自SegmentFault 本文内容仅供学习交流，如有侵权立即删除。 前言这是一次完整的项目实践，Angular页面+Springboot接口+MySQL都通过Dockerfile打包成docker镜像，通过docker-compose做统一编排。目的是实现整个项目产品的轻量级和灵活性，在将各个模块的镜像都上传公共镜像仓库后，任何人都可以通过 “docker-compose up -d” 一行">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker实战">
+<meta property="og:url" content="https://www.jlovek.cn/2020/11/03/Docker实战/index.html">
+<meta property="og:site_name" content="J0kkeR">
+<meta property="og:description" content="转载自SegmentFault 本文内容仅供学习交流，如有侵权立即删除。 前言这是一次完整的项目实践，Angular页面+Springboot接口+MySQL都通过Dockerfile打包成docker镜像，通过docker-compose做统一编排。目的是实现整个项目产品的轻量级和灵活性，在将各个模块的镜像都上传公共镜像仓库后，任何人都可以通过 “docker-compose up -d” 一行">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-11-03T09:45:48.071Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker实战">
+<meta name="twitter:description" content="转载自SegmentFault 本文内容仅供学习交流，如有侵权立即删除。 前言这是一次完整的项目实践，Angular页面+Springboot接口+MySQL都通过Dockerfile打包成docker镜像，通过docker-compose做统一编排。目的是实现整个项目产品的轻量级和灵活性，在将各个模块的镜像都上传公共镜像仓库后，任何人都可以通过 “docker-compose up -d” 一行">
+
+
+
+
+
+<link rel="icon" href="/images/tb.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-178521587-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-178521587-1');
+</script>
+
+
+    
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?7fed72967ab92d97f11277419fc4adae";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+<style type="text/css">.image.is-128x128 {border-radius: 100% !important;}</style>
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logoJ.png" alt="Docker实战" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">主页</a>
+                
+                <a class="navbar-item" href="/archives">归档</a>
+                
+                <a class="navbar-item" href="/categories">分类</a>
+                
+                <a class="navbar-item" href="/tags">标签</a>
+                
+                <a class="navbar-item" href="/about">关于我</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-12-widescreen has-order-2 column-main">
+<style>
+  @media screen and (min-width: 1472px) {
+    .is-2-column .container {
+        max-width: 1344px !important;
+        width: 1344px !important;
+    }
+  }
+  @media screen and (min-width: 900px) {
+    .is-1-column .container, .is-2-column .container {
+        max-width: 1344px !important;
+        width: 1344px !important;
+    }
+  }
+</style>
+
+
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-11-03T09:37:28.000Z">2020-11-03</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Project/">Project</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Project/Docker/">Docker</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    21 分钟 读完 (大约 3172 个字)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Docker实战
+            
+        </h1>
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#前言">
+        <span class="has-mr-6">1</span>
+        <span>前言</span>
+        </a></li><li>
+        <a class="is-flex" href="#MySQL镜像">
+        <span class="has-mr-6">2</span>
+        <span>MySQL镜像</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#初始化脚本">
+        <span class="has-mr-6">2.1</span>
+        <span>初始化脚本</span>
+        </a></li><li>
+        <a class="is-flex" href="#Dockerfile构建镜像">
+        <span class="has-mr-6">2.2</span>
+        <span>Dockerfile构建镜像</span>
+        </a></li><li>
+        <a class="is-flex" href="#SpringBoot镜像">
+        <span class="has-mr-6">2.3</span>
+        <span>SpringBoot镜像</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#Nginx（Angular）镜像">
+        <span class="has-mr-6">3</span>
+        <span>Nginx（Angular）镜像</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Nginx的配置">
+        <span class="has-mr-6">3.1</span>
+        <span>Nginx的配置</span>
+        </a></li><li>
+        <a class="is-flex" href="#Dockerfile构建镜像-1">
+        <span class="has-mr-6">3.2</span>
+        <span>Dockerfile构建镜像</span>
+        </a></li><li>
+        <a class="is-flex" href="#docker-compose容器服务编排">
+        <span class="has-mr-6">3.3</span>
+        <span>docker-compose容器服务编排</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#其他">
+        <span class="has-mr-6">4</span>
+        <span>其他</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#自动部署">
+        <span class="has-mr-6">4.1</span>
+        <span>自动部署</span>
+        </a></li><li>
+        <a class="is-flex" href="#遇到的坑">
+        <span class="has-mr-6">4.2</span>
+        <span>遇到的坑</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+        <div class="content">
+            <p><strong>转载自SegmentFault</strong></p>
+<p><strong>本文内容仅供学习交流，如有侵权立即删除。</strong></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h3><p>这是一次完整的项目实践，Angular页面+Springboot接口+MySQL都通过Dockerfile打包成docker镜像，通过docker-compose做统一编排。目的是实现整个项目产品的轻量级和灵活性，在将各个模块的镜像都上传公共镜像仓库后，任何人都可以通过 “docker-compose up -d” 一行命令，将整个项目的前端、后端、数据库以及文件服务器等，运行在自己的服务器上。</p>
+<p>本项目是开发一个类似于segmentfault的文章共享社区，我的设想是当部署在个人服务器上时就是个人的文章库，部署在项目组的服务器上就是项目内部的文章库，部署在公司的服务器上就是所有职工的文章共享社区。突出的特点就是，项目相关的所有应用和文件资源都是灵活的，用户可以傻瓜式地部署并使用，对宿主机没有任何依赖。</p>
+<a id="more"></a>
+<p>目前一共有三个docker镜像，考虑以后打在一个镜像中，但目前只能通过docker-compose来编排这三个镜像。</p>
+<ol>
+<li>MySQL镜像：以MySQL为基础，将项目所用到的数据库、表结构以及一些基础表的数据库，通过SQL脚本打包在镜像中。用户在启动镜像后就自动创建了项目所有的数据库、表和基础表数据。</li>
+<li>SpringBoot镜像：后台接口通过SpringBoot开发，开发完成后直接可以打成镜像，由于其内置tomcat，可以直接运行，数据库指向启动好的MySQL容器中的数据库。</li>
+<li>Nginx（Angular）镜像：Nginx镜像中打包了Angular项目的dist目录资源，以及default.conf文件。主要的作用有：部署Angular项目页面；挂载宿主机目录作为文件服务器；以及反向代理SpringBoot接口，解决跨域问题等等。</li>
+</ol>
+<p>最后三个docker容器的编排通过docker-compose来实现，三个容器之间的相互访问都通过容器内部的别名，避免了宿主机迁移时ip无法对应的问题。为了方便开发，顺便配了个自动部署。</p>
+<h3 id="MySQL镜像"><a href="#MySQL镜像" class="headerlink" title="MySQL镜像"></a><strong>MySQL镜像</strong></h3><h5 id="初始化脚本"><a href="#初始化脚本" class="headerlink" title="初始化脚本"></a><strong>初始化脚本</strong></h5><p>在项目完成后，需要生成项目所需数据库、表结构以及基础表数据的脚本，保证在运行该docker容器中，启动MySQL数据库时，自动构建数据库和表结构，并初始化基础表数据。</p>
+<p>Navicat for MySQL的客户端支持导出数据库的表结构和表数据的SQL脚本。如果没有安装Navicat，可以在连接上容器中开发用的MySQL数据库，通过mysqldump 命令导出数据库表结构和数据的SQL脚本。下文中就是将数据库的SQL脚本导出到宿主机的/bees/sql 目录：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it  mysql mysqldump -uroot -pPASSWORD 数据库名称 &gt; /bees/sql/数据库名称.sql</span><br></pre></td></tr></table></figure>
+<p>以上只是导出 表结构和表数据的脚本，还要在SQL脚本最上方加上 生成数据库的SQL：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">drop database if exists 数据库名称;</span><br><span class="line">create database 数据库名称;</span><br><span class="line">use 数据库名称;</span><br></pre></td></tr></table></figure>
+<p>通过以上两个步骤，数据库、表结构和表数据三者的初始化SQL脚本就生成好了。</p>
+<h5 id="Dockerfile构建镜像"><a href="#Dockerfile构建镜像" class="headerlink" title="Dockerfile构建镜像"></a>Dockerfile构建镜像</h5><p>我们生成的SQL脚本叫 bees.sql,在MySQL官方镜像中提供了容器启动时自动执行/docker-entrypoint-initdb.d文件夹下的脚本的功能(包括shell脚本和sql脚本)，我们在后续生成镜像的时候，将上述生成的SQL脚本COPY到MySQL的/docker-entrypoint-initdb.d目录下就可以了。<br>现在我们写Dockerfile，很简单：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FROM mysql</span><br><span class="line"></span><br><span class="line">MAINTAINER kerry(kerry.wu@definesys.com)</span><br><span class="line"></span><br><span class="line">COPY bees.sql /docker-entrypoint-initdb.d</span><br></pre></td></tr></table></figure>
+<p>将 bees.sql 和 Dockerfile 两个文件放在同一目录，执行构建镜像的命令就可以了：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t bees-mysql .</span><br></pre></td></tr></table></figure>
+<p>现在通过 docker images，就能看到本地的镜像库中就已经新建了一个 bees-mysql的镜像啦。</p>
+<h5 id="SpringBoot镜像"><a href="#SpringBoot镜像" class="headerlink" title="SpringBoot镜像"></a>SpringBoot镜像</h5><p>springboot构建镜像的方式很多，有通过代码生成镜像的，也有通过jar包生成镜像的。我不想对代码有任何污染，就选择后者，通过生成的jar包构建镜像。<br>创建一个目录，上传已经准备好的springboot的jar包，这里名为bees-0.0.1-SNAPSHOT.jar，然后同样编写Dockerfile文件：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FROM java:8</span><br><span class="line">VOLUME /tmp</span><br><span class="line">ADD bees-0.0.1-SNAPSHOT.jar /bees-springboot.jar</span><br><span class="line">EXPOSE 8010</span><br><span class="line">ENTRYPOINT [&quot;java&quot;,&quot;-Djava.security.egd=file:/dev/./urandom&quot;,&quot;-jar&quot;,&quot;-Denv=DEV&quot;,&quot;/bees-springboot.jar&quot;]</span><br></pre></td></tr></table></figure>
+<p>将bees-0.0.1-SNAPSHOT.jar和Dockerfile放在同一目录执行命令开始构建镜像，同样在本地镜像库中就生成了bees-springboot的镜像：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t bees-springboot .</span><br></pre></td></tr></table></figure>
+<h3 id="Nginx（Angular）镜像"><a href="#Nginx（Angular）镜像" class="headerlink" title="Nginx（Angular）镜像"></a>Nginx（Angular）镜像</h3><h5 id="Nginx的配置"><a href="#Nginx的配置" class="headerlink" title="Nginx的配置"></a>Nginx的配置</h5><p>该镜像主要在于nginx上conf.d/default.conf文件的配置，主要实现三个需求：</p>
+<p>1、Angualr部署<br>  Angular的部署很简单，只要将Angular项目通过 ng build –prod 命令生成dist目录，将dist目录作为静态资源文件放在服务器上访问就行。我们这里就把dist目录打包在nginx容器中，在default.conf上配置访问。</p>
+<p>​       2、文件服务器<br>  项目为文章共享社区，少不了的就是一个存储文章的文件服务器，包括存储一些图片之类的静态资源。需要在容器中创建一个文件目录，通过default.conf上的配置将该目录代理出来，可以直接访问目录中的文件。<br>当然为了不丢失，这些文件最好是保存在宿主机上，在启动容器时可以将宿主机本地的目录挂载到容器中的文件目录。</p>
+<p>​       3、接口跨域问题<br>  在前后端分离开发的项目中，“跨域问题”是较为常见的，SpringBoot的容器和Angular所在的容器不在同一个ip和端口，我们同样可以在default.conf上配置反向代理，将后台接口代理成同一个ip和端口的地址。</p>
+<p>话不多说，结合上面三个问题，我们最终的default.conf为：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line"></span><br><span class="line">    server_name  localhost;</span><br><span class="line">    </span><br><span class="line">    gzip on;</span><br><span class="line">    gzip_min_length  1k;</span><br><span class="line">    gzip_buffers     4 16k;</span><br><span class="line">    gzip_comp_level 3;</span><br><span class="line">    gzip_types       text/plain application/x-javascript application/javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;</span><br><span class="line">    gzip_vary on;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">        try_files $uri $uri/ /index.html;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    location /api/ &#123;</span><br><span class="line">        proxy_pass http://beesSpringboot:8010/;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location /file &#123;</span><br><span class="line">        alias /home/file;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    error_page   500 502 503 504  /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>location / :代理的是Angular项目，dist目录内通过Dockerfile<br>COPY在容器内的/usr/share/nginx/html目录；</li>
+<li>location /file ：代理/home/file 目录，作为文件服务器；</li>
+<li>location /api/ :是为了解决跨域而做的反向代理，为了脱离宿主机的限制，接口所在容器的ip通过别名beesSpringboot来代替。别名的设置是在docker-compose.yml中设置的，后续再讲。</li>
+<li>添加了gzip，针对前端较大资源文件下载速度的优化</li>
+</ol>
+<h5 id="Dockerfile构建镜像-1"><a href="#Dockerfile构建镜像-1" class="headerlink" title="Dockerfile构建镜像"></a><strong>Dockerfile构建镜像</strong></h5><p>同样创建一个目录，包含Angualr的dist目录、Dockerfile和nginx的default.conf文件，目录结构如下：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[root@Kerry angular]# tree</span><br><span class="line">.</span><br><span class="line">├── dist</span><br><span class="line">│   └── Bees</span><br><span class="line">│       ├── 0.cb202cb30edaa3c93602.js</span><br><span class="line">│       ├── 1.3ac3c111a5945a7fdac6.js</span><br><span class="line">│       ├── 2.99bfc194c4daea8390b3.js</span><br><span class="line">│       ├── 3.50547336e0234937eb51.js</span><br><span class="line">│       ├── 3rdpartylicenses.txt</span><br><span class="line">│       ├── 4.53141e3db614f9aa6fe0.js</span><br><span class="line">│       ├── assets</span><br><span class="line">│       │   └── images</span><br><span class="line">│       │       ├── login_background.jpg</span><br><span class="line">│       │       └── logo.png</span><br><span class="line">│       ├── favicon.ico</span><br><span class="line">│       ├── index.html</span><br><span class="line">│       ├── login_background.7eaf4f9ce82855adb045.jpg</span><br><span class="line">│       ├── main.894e80999bf907c5627b.js</span><br><span class="line">│       ├── polyfills.6960d5ea49e64403a1af.js</span><br><span class="line">│       ├── runtime.37fed2633286b6e47576.js</span><br><span class="line">│       └── styles.9e4729a9c6b60618a6c6.css</span><br><span class="line">├── Dockerfile</span><br><span class="line">└── nginx</span><br><span class="line">    └── default.conf</span><br></pre></td></tr></table></figure>
+<p>Dockerfile文件如下：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">FROM nginx</span><br><span class="line"></span><br><span class="line">COPY nginx/default.conf /etc/nginx/conf.d/</span><br><span class="line"></span><br><span class="line">RUN rm -rf /usr/share/nginx/html/*</span><br><span class="line"></span><br><span class="line">COPY /dist/Bees /usr/share/nginx/html</span><br><span class="line"></span><br><span class="line">CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</span><br></pre></td></tr></table></figure>
+<p>以上，通过下列命令，构建bees-nginx-angular的镜像完成：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`docker build -t bees-nginx-angular .</span><br></pre></td></tr></table></figure>
+<h5 id="docker-compose容器服务编排"><a href="#docker-compose容器服务编排" class="headerlink" title="docker-compose容器服务编排"></a><strong>docker-compose容器服务编排</strong></h5><p>上述，我们已经构建了三个镜像，相对应的至少要启动三个容器来完成项目的运行。那要执行三个docker run？太麻烦了，而且这三个容器之间还需要相互通信，如果只使用docker来做的话，不光启动容器的命令会很长，而且为了容器之间的通信，docker –link 都会十分复杂，这里我们需要一个服务编排。docker的编排名气最大的当然是kubernetes，但我的初衷是让这个项目轻量级，不太希望用户安装偏重量级的kubernetes才能运行，而我暂时又没能解决将三个镜像构建成一个镜像的技术问题，就选择了适中的一个产品–docker-compse。</p>
+<p>安装docker-compose很简单，这里就不赘言了。安装完之后，随便找个目录，写一个docker-compose.yml文件，然后在该文件所在地方执行一行命令就能将三个容器启动了：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#启动</span><br><span class="line">docker-compose up -d</span><br><span class="line">#关闭</span><br><span class="line">docker-compose down</span><br></pre></td></tr></table></figure>
+<p>这里直接上我写的docker-compose.yml文件</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;2&quot;</span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line"> beesMysql:</span><br><span class="line">  restart: always</span><br><span class="line">  image: bees-mysql</span><br><span class="line">  ports:</span><br><span class="line">   - 3306:3306</span><br><span class="line">  volumes:</span><br><span class="line">   - /bees/docker_volume/mysql/conf:/etc/mysql/conf.d</span><br><span class="line">   - /bees/docker_volume/mysql/logs:/logs</span><br><span class="line">   - /bees/docker_volume/mysql/data:/var/lib/mysql</span><br><span class="line">  environment:</span><br><span class="line">   MYSQL_ROOT_PASSWORD: kerry</span><br><span class="line"></span><br><span class="line"> beesSpringboot:</span><br><span class="line">  restart: always</span><br><span class="line">  image: bees-springboot</span><br><span class="line">  ports:</span><br><span class="line">   - 8010:8010</span><br><span class="line">  depends_on:</span><br><span class="line">   - beesMysql</span><br><span class="line"></span><br><span class="line"> beesNginxAngular:</span><br><span class="line">  restart: always</span><br><span class="line">  image: bees-nginx-angular</span><br><span class="line">  ports:</span><br><span class="line">   - 8000:80</span><br><span class="line">  depends_on:</span><br><span class="line">   - beesSpringboot</span><br><span class="line">  volumes:</span><br><span class="line">   - /bees/docker_volume/nginx/nginx.conf:/etc/nginx/nginx.conf</span><br><span class="line">   - /bees/docker_volume/nginx/conf.d:/etc/nginx/conf.d</span><br><span class="line">   - /bees/docker_volume/nginx/file:/home/file</span><br></pre></td></tr></table></figure>
+<ul>
+<li>image:镜像名称</li>
+<li>ports:容器的端口和宿主机的端口的映射</li>
+<li>services:文中三个service，在各自容器启动后就会自动生成别名，例如：在springboot中访问数据库，只需要通过“beesMysql:3306”就能访问。</li>
+<li>depends_on:会设置被依赖的容器启动之后，才会启动自己。例如：mysql数据库容器启动后，再启动springboot接口的容器。</li>
+<li>volumes：挂载卷，一些需要长久保存的文件，可通过宿主机中的目录，挂载到容器中，否则容器重启后会丢失。例如：数据库的数据文件；nginx的配置文件和文件服务器目录。</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a><strong>其他</strong></h3><h5 id="自动部署"><a href="#自动部署" class="headerlink" title="自动部署"></a><strong>自动部署</strong></h5><p>为了提高开发效率，简单写了一个自动部署的脚本，直接贴脚本了：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">v_springboot_jar=`find /bees/devops/upload/ -name &quot;*.jar&quot;`</span><br><span class="line">echo &quot;找到jar:&quot;$v_springboot_jar</span><br><span class="line">v_angular_zip=`find /bees/devops/upload/ -name &quot;dist.zip&quot;`</span><br><span class="line">echo &quot;找到dist:&quot;$v_angular_zip</span><br><span class="line"></span><br><span class="line">cd /bees/conf/</span><br><span class="line">docker-compose down</span><br><span class="line">echo &quot;关闭容器&quot;</span><br><span class="line"></span><br><span class="line">docker rmi -f $(docker images |  grep &quot;bees-springboot&quot;  | awk &apos;&#123;print $1&#125;&apos;)</span><br><span class="line">docker rmi -f $(docker images |  grep &quot;bees-nginx-angular&quot;  | awk &apos;&#123;print $1&#125;&apos;)</span><br><span class="line">echo &quot;删除镜像&quot;</span><br><span class="line"></span><br><span class="line">cd /bees/devops/dockerfiles/springboot/</span><br><span class="line">rm -f *.jar</span><br><span class="line">cp $v_springboot_jar ./bees-0.0.1-SNAPSHOT.jar</span><br><span class="line">docker build -t bees-springboot .</span><br><span class="line">echo &quot;生成springboot镜像&quot;</span><br><span class="line"></span><br><span class="line">cd /bees/devops/dockerfiles/angular/</span><br><span class="line">rm -rf dist/</span><br><span class="line">cp $v_angular_zip ./dist.zip</span><br><span class="line">unzip dist.zip</span><br><span class="line">rm -f dist.zip</span><br><span class="line">docker build -t bees-nginx-angular .</span><br><span class="line">echo &quot;生成angular镜像&quot;</span><br><span class="line"></span><br><span class="line">cd /bees/conf/</span><br><span class="line">docker-compose up -d</span><br><span class="line">echo &quot;启动容器&quot;</span><br><span class="line">docker ps |grep bees</span><br></pre></td></tr></table></figure>
+<h5 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a><strong>遇到的坑</strong></h5><p>一开始在docker-compose.yml文件中写services时，每个service不是驼峰式命名，而是下划线连接，例如:bees_springboot、bees_mysql、bees_nginx_angular 。</p>
+<p>在springboot中访问数据库的别名可以，但是在nginx中，反向代理springboot接口地址时死活代理不了 bees_springboot的别名。能在bees_nginx_angular的容器中ping通bees_springboot，但是代理不了bees_springboot地址的接口，通过curl -v 查看原因，是丢失了host。</p>
+<p>最后发现，nginx默认request的header中包含“_”下划线时，会自动忽略掉。我因此把docker-compose.yml中service名称，从下划线命名都改成了驼峰式。</p>
+<p>当然也可以通过在nginx里的nginx.conf配置文件中的http部分中添加如下配置解决：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">underscores_in_headers on;</span><br></pre></td></tr></table></figure>
+            <div class="level is-size-7 has-text-grey">
+    <div class="level-left">
+        <i class="far fa-eye"></i>
+        <span>&nbsp;</span>
+        <span id="busuanzi_container_page_pv" style="display: inline;">
+            <span id="busuanzi_value_page_pv">0</span>
+        </span>
+    </div>
+</div>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Docker/">Docker</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">如果觉得我的文章对您有用，请随缘打赏~您的支持将鼓励我继续创作！</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/zfb.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wx.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/11/02/CrowdStrike/">
+                <span class="level-item">CrowdStrike</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'NnB3IeC244Rt4VY9rThBjI1H-gzGzoHsz',
+        app_key: '3TLMC7bqq2H82vuxQIO7OKVu',
+        placeholder: '随便说点啥都行~'
+    });
+</script>
+
+    </div>
+</div>
+
+
+</div>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logoJ.png" alt="Docker实战" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Pe1Ha0&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                </p>
+            </div>
+            <div class="level-end">
+            <span id="busuanzi_container_site_uv">
+    ❤️ 感谢
+    <span id="busuanzi_value_site_uv">0</span>
+    位小伙伴的
+</span>
+<span id="busuanzi_container_site_pv">
+    <span id="busuanzi_value_site_pv">0</span>
+    次陪伴
+</span>
+</div>
+            
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {matchFontHeight: false},
+        SVG: {matchFontHeight: false},
+        CommonHTML: {matchFontHeight: false}
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

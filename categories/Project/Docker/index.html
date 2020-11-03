@@ -2,7 +2,7 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>分类: Raspbian - J0kkeR</title>
+<title>分类: Docker - J0kkeR</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -15,7 +15,7 @@
 <meta name="keywords" content="J0kkeR">
 <meta property="og:type" content="website">
 <meta property="og:title" content="J0kkeR">
-<meta property="og:url" content="https://www.jlovek.cn/categories/Hardware/Raspbian/index.html">
+<meta property="og:url" content="https://www.jlovek.cn/categories/Project/Docker/index.html">
 <meta property="og:site_name" content="J0kkeR">
 <meta property="og:description" content="C9 80 C1 E3 F7">
 <meta property="og:locale" content="zh-CN">
@@ -154,9 +154,9 @@ var _hmt = _hmt || [];
         <ul>
             <li><a href="/categories">分类</a></li>
             
-            <li><a href="/categories/Hardware/">Hardware</a></li>
+            <li><a href="/categories/Project/">Project</a></li>
             
-            <li class="is-active"><a href="#" aria-current="page">Raspbian</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Docker</a></li>
         </ul>
         </nav>
     </div>
@@ -185,17 +185,17 @@ var _hmt = _hmt || [];
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-02T10:37:20.000Z">2019-02-02</time>
+                <time class="level-item has-text-grey" datetime="2020-11-03T09:37:28.000Z">2020-11-03</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Hardware/">Hardware</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Hardware/Raspbian/">Raspbian</a>
+                <a class="has-link-grey -link" href="/categories/Project/">Project</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Project/Docker/">Docker</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 560 个字)
+                    21 分钟 读完 (大约 3172 个字)
                 </span>
                 
             </div>
@@ -203,7 +203,7 @@ var _hmt = _hmt || [];
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/02/02/Raspberry-Pi/">树莓派系统安装</a>
+                <a class="has-link-black-ter" href="/2020/11/03/Docker实战/">Docker实战</a>
             
         </h1>
         
@@ -214,85 +214,63 @@ var _hmt = _hmt || [];
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#0X00">
+        <a class="is-flex" href="#前言">
         <span class="has-mr-6">1</span>
-        <span>0X00</span>
+        <span>前言</span>
         </a></li><li>
-        <a class="is-flex" href="#0X01">
+        <a class="is-flex" href="#MySQL镜像">
         <span class="has-mr-6">2</span>
-        <span>0X01</span>
+        <span>MySQL镜像</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#设置无线网连接">
+        <a class="is-flex" href="#初始化脚本">
         <span class="has-mr-6">2.1</span>
-        <span>设置无线网连接</span>
+        <span>初始化脚本</span>
         </a></li><li>
-        <a class="is-flex" href="#开启强制HDMI输出">
+        <a class="is-flex" href="#Dockerfile构建镜像">
         <span class="has-mr-6">2.2</span>
-        <span>开启强制HDMI输出</span>
+        <span>Dockerfile构建镜像</span>
+        </a></li><li>
+        <a class="is-flex" href="#SpringBoot镜像">
+        <span class="has-mr-6">2.3</span>
+        <span>SpringBoot镜像</span>
         </a></li></ul></li><li>
-        <a class="is-flex" href="#0X02">
+        <a class="is-flex" href="#Nginx（Angular）镜像">
         <span class="has-mr-6">3</span>
-        <span>0X02</span>
+        <span>Nginx（Angular）镜像</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#通电测试">
+        <a class="is-flex" href="#Nginx的配置">
         <span class="has-mr-6">3.1</span>
-        <span>通电测试</span>
+        <span>Nginx的配置</span>
+        </a></li><li>
+        <a class="is-flex" href="#Dockerfile构建镜像-1">
+        <span class="has-mr-6">3.2</span>
+        <span>Dockerfile构建镜像</span>
+        </a></li><li>
+        <a class="is-flex" href="#docker-compose容器服务编排">
+        <span class="has-mr-6">3.3</span>
+        <span>docker-compose容器服务编排</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#其他">
+        <span class="has-mr-6">4</span>
+        <span>其他</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#自动部署">
+        <span class="has-mr-6">4.1</span>
+        <span>自动部署</span>
+        </a></li><li>
+        <a class="is-flex" href="#遇到的坑">
+        <span class="has-mr-6">4.2</span>
+        <span>遇到的坑</span>
         </a></li></ul></li></ul>
         </div>
     </div>
 </div>
 
         <div class="content">
-            <h1 id="0X00"><a href="#0X00" class="headerlink" title="0X00"></a>0X00</h1><hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">硬件准备</th>
-<th style="text-align:left"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Raspberry Pi3</td>
-<td style="text-align:left">一个</td>
-</tr>
-<tr>
-<td style="text-align:left">TF储存卡</td>
-<td style="text-align:left">推荐16GB的高速卡</td>
-</tr>
-<tr>
-<td style="text-align:left">路由器</td>
-<td style="text-align:left">一台</td>
-</tr>
-<tr>
-<td style="text-align:left">电脑</td>
-<td style="text-align:left">已连接到路由器</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">软件准备</th>
-<th style="text-align:left"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">SD Card Formatter</td>
-<td style="text-align:left"><a href="https://www.sdcard.org/chs/downloads/formatter_4/eula_windows/SDCardFormatterv5_WinEN.zip" target="_blank" rel="noopener">点击下载</a>(Windows版本)</td>
-</tr>
-<tr>
-<td style="text-align:left">Win32 Disk Imager</td>
-<td style="text-align:left"><a href="https://sourceforge.net/projects/win32diskimager/files/Archive/win32diskimager-1.0.0-install.exe/download?use_mirror=nchc" target="_blank" rel="noopener">点击进入下载链接</a></td>
-</tr>
-<tr>
-<td style="text-align:left">树莓派镜像</td>
-<td style="text-align:left"><a href="https://sourceforge.net/projects/win32diskimager/files/Archive/win32diskimager-1.0.0-install.exe/download?use_mirror=nchc" target="_blank" rel="noopener">点击进入下载链接</a></td>
-</tr>
-</tbody>
-</table>
-<p><strong>推荐这个带软件集成的桌面版本</strong><br><img src="version.png" alt=""><br></p>
+            <p><strong>转载自SegmentFault</strong></p>
+<p><strong>本文内容仅供学习交流，如有侵权立即删除。</strong></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h3><p>这是一次完整的项目实践，Angular页面+Springboot接口+MySQL都通过Dockerfile打包成docker镜像，通过docker-compose做统一编排。目的是实现整个项目产品的轻量级和灵活性，在将各个模块的镜像都上传公共镜像仓库后，任何人都可以通过 “docker-compose up -d” 一行命令，将整个项目的前端、后端、数据库以及文件服务器等，运行在自己的服务器上。</p>
+<p>本项目是开发一个类似于segmentfault的文章共享社区，我的设想是当部署在个人服务器上时就是个人的文章库，部署在项目组的服务器上就是项目内部的文章库，部署在公司的服务器上就是所有职工的文章共享社区。突出的特点就是，项目相关的所有应用和文件资源都是灵活的，用户可以傻瓜式地部署并使用，对宿主机没有任何依赖。</p>
             <div class="level is-size-7 has-text-grey">
     <div class="level-left">
         <i class="far fa-eye"></i>
@@ -308,7 +286,7 @@ var _hmt = _hmt || [];
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/02/02/Raspberry-Pi/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/2020/11/03/Docker实战/#more">阅读更多</a>
                 </div>
             </div>
         </div>
