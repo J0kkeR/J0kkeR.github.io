@@ -182,7 +182,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 501 个字)
+                    3 分钟 读完 (大约 503 个字)
                 </span>
                 
             </div>
@@ -190,7 +190,7 @@ var _hmt = _hmt || [];
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/02/05/Raspberry-Pi1/">树莓派系统基本设置</a>
+                <a class="has-link-black-ter" href="/2019/02/05/Raspberry-Pi1_Config/">树莓派系统基本设置</a>
             
         </h1>
         
@@ -208,14 +208,10 @@ var _hmt = _hmt || [];
 </ul>
 <hr>
 <h2 id="切换到root用户"><a href="#切换到root用户" class="headerlink" title="切换到root用户"></a>切换到root用户</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su root</span><br></pre></td></tr></table></figure>
-<h3 id="修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表"><a href="#修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表" class="headerlink" title="修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表"></a>修改Raspbian的软件源以便提供更快的下载速度<a href="http://www.raspbian.org/RaspbianMirrors" target="_blank" rel="noopener">官方认证的源列表</a></h3><p><img src="list.png" alt=""><br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/apt/sources.list</span><br><span class="line">nano /etc/apt/sources.list.d/raspi.list</span><br><span class="line">apt-get update &amp;&amp; apt-get upgrade</span><br></pre></td></tr></table></figure></p>
+<h3 id="修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表"><a href="#修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表" class="headerlink" title="修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表"></a>修改Raspbian的软件源以便提供更快的下载速度<a href="http://www.raspbian.org/RaspbianMirrors" target="_blank" rel="noopener">官方认证的源列表</a></h3><p><img src="/images/post_s2/2.png" alt=""><br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/apt/sources.list</span><br><span class="line">nano /etc/apt/sources.list.d/raspi.list</span><br><span class="line">apt-get update &amp;&amp; apt-get upgrade</span><br></pre></td></tr></table></figure></p>
 <p>把原来的地址行删除或者注释掉然后直接按这个格式扔进去就行</p>
-<font color="red">sources.list</font>
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb 软件源地址 stretch main non-free contrib rpi</span><br><span class="line">deb-src 软件源地址 stretch main non-free contrib rpi</span><br></pre></td></tr></table></figure>
-<font color="red">raspi.list</font>
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb 软件源地址 stretch main ui</span><br><span class="line">deb-src 软件源地址 stretch main ui</span><br></pre></td></tr></table></figure>
+<p><font color="red">sources.list</font><br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb 软件源地址 stretch main non-free contrib rpi</span><br><span class="line">deb-src 软件源地址 stretch main non-free contrib rpi</span><br></pre></td></tr></table></figure></p>
+<p><font color="red">raspi.list</font><br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb 软件源地址 stretch main ui</span><br><span class="line">deb-src 软件源地址 stretch main ui</span><br></pre></td></tr></table></figure></p>
             <div class="level is-size-7 has-text-grey">
     <div class="level-left">
         <i class="far fa-eye"></i>
@@ -231,7 +227,7 @@ var _hmt = _hmt || [];
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/02/05/Raspberry-Pi1/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/2019/02/05/Raspberry-Pi1_Config/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -270,6 +266,8 @@ var _hmt = _hmt || [];
             <li><a class="pagination-link is-current" href="/page/11/">11</a></li>
             
             <li><a class="pagination-link has-text-black-ter" href="/page/12/">12</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/13/">13</a></li>
             
         </ul>
     </nav>
@@ -319,7 +317,7 @@ var _hmt = _hmt || [];
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        12
+                        13
                     </p>
                 </div>
             </div>
@@ -427,7 +425,7 @@ var _hmt = _hmt || [];
                 <span class="level-item">Network</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Network/Architecture/">
@@ -514,7 +512,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Reproduced/">
                         <span class="tag">Reproduced</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
@@ -543,6 +541,19 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-12-08T07:30:36.000Z">2020-12-08</time></div>
+                    <a href="/2020/12/08/计算规模驱动下的网络方案演进/" class="has-link-black-ter is-size-6">计算规模驱动下的网络方案演进</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -596,19 +607,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-02T07:32:35.000Z">2020-07-02</time></div>
-                    <a href="/2020/07/02/图解TCP/" class="has-link-black-ter is-size-6">图解TCP</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/HTTP/">HTTP</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -620,6 +618,17 @@ var _hmt = _hmt || [];
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/11/">
@@ -726,6 +735,19 @@ var _hmt = _hmt || [];
             
             <div class="media-content">
                 <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-12-08T07:30:36.000Z">2020-12-08</time></div>
+                    <a href="/2020/12/08/计算规模驱动下的网络方案演进/" class="has-link-black-ter is-size-6">计算规模驱动下的网络方案演进</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-11-03T09:37:28.000Z">2020-11-03</time></div>
                     <a href="/2020/11/03/Docker实战/" class="has-link-black-ter is-size-6">Docker实战</a>
                     <p class="is-size-7 is-uppercase">
@@ -774,19 +796,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-02T07:32:35.000Z">2020-07-02</time></div>
-                    <a href="/2020/07/02/图解TCP/" class="has-link-black-ter is-size-6">图解TCP</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/HTTP/">HTTP</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -798,6 +807,17 @@ var _hmt = _hmt || [];
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/11/">

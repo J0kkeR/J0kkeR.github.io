@@ -172,17 +172,17 @@ var _hmt = _hmt || [];
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-11-03T09:37:28.000Z">2020-11-03</time>
+                <time class="level-item has-text-grey" datetime="2020-12-08T07:30:36.000Z">2020-12-08</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Project/">Project</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Project/Docker/">Docker</a>
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    21 分钟 读完 (大约 3172 个字)
+                    35 分钟 读完 (大约 5194 个字)
                 </span>
                 
             </div>
@@ -190,7 +190,7 @@ var _hmt = _hmt || [];
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/11/03/Docker实战/">Docker实战</a>
+                <a class="has-link-black-ter" href="/2020/12/08/计算规模驱动下的网络方案演进/">计算规模驱动下的网络方案演进</a>
             
         </h1>
         
@@ -201,63 +201,92 @@ var _hmt = _hmt || [];
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#前言">
+        <a class="is-flex" href="#引言">
         <span class="has-mr-6">1</span>
-        <span>前言</span>
+        <span>引言</span>
         </a></li><li>
-        <a class="is-flex" href="#MySQL镜像">
+        <a class="is-flex" href="#裸金属（BM）时代">
         <span class="has-mr-6">2</span>
-        <span>MySQL镜像</span>
+        <span>裸金属（BM）时代</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#初始化脚本">
+        <a class="is-flex" href="#平台特点">
         <span class="has-mr-6">2.1</span>
-        <span>初始化脚本</span>
+        <span>平台特点</span>
         </a></li><li>
-        <a class="is-flex" href="#Dockerfile构建镜像">
+        <a class="is-flex" href="#网络需求">
         <span class="has-mr-6">2.2</span>
-        <span>Dockerfile构建镜像</span>
+        <span>网络需求</span>
         </a></li><li>
-        <a class="is-flex" href="#SpringBoot镜像">
+        <a class="is-flex" href="#网络解决方案">
         <span class="has-mr-6">2.3</span>
-        <span>SpringBoot镜像</span>
+        <span>网络解决方案</span>
+        </a></li><li>
+        <a class="is-flex" href="#网络瓶颈分析（计算规模相关）">
+        <span class="has-mr-6">2.4</span>
+        <span>网络瓶颈分析（计算规模相关）</span>
         </a></li></ul></li><li>
-        <a class="is-flex" href="#Nginx（Angular）镜像">
+        <a class="is-flex" href="#虚拟机（VM）时代">
         <span class="has-mr-6">3</span>
-        <span>Nginx（Angular）镜像</span>
+        <span>虚拟机（VM）时代</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#Nginx的配置">
+        <a class="is-flex" href="#平台特点-1">
         <span class="has-mr-6">3.1</span>
-        <span>Nginx的配置</span>
+        <span>平台特点</span>
         </a></li><li>
-        <a class="is-flex" href="#Dockerfile构建镜像-1">
+        <a class="is-flex" href="#网络需求-1">
         <span class="has-mr-6">3.2</span>
-        <span>Dockerfile构建镜像</span>
+        <span>网络需求</span>
         </a></li><li>
-        <a class="is-flex" href="#docker-compose容器服务编排">
+        <a class="is-flex" href="#网络解决方案-1">
         <span class="has-mr-6">3.3</span>
-        <span>docker-compose容器服务编排</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#其他">
-        <span class="has-mr-6">4</span>
-        <span>其他</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#自动部署">
-        <span class="has-mr-6">4.1</span>
-        <span>自动部署</span>
+        <span>网络解决方案</span>
         </a></li><li>
-        <a class="is-flex" href="#遇到的坑">
+        <a class="is-flex" href="#网络瓶颈分析（计算规模相关）-1">
+        <span class="has-mr-6">3.4</span>
+        <span>网络瓶颈分析（计算规模相关）</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#容器时代">
+        <span class="has-mr-6">4</span>
+        <span>容器时代</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#沿用大二层模型">
+        <span class="has-mr-6">4.1</span>
+        <span>沿用大二层模型</span>
+        </a></li><li>
+        <a class="is-flex" href="#避免网络瓶颈">
         <span class="has-mr-6">4.2</span>
-        <span>遇到的坑</span>
-        </a></li></ul></li></ul>
+        <span>避免网络瓶颈</span>
+        </a></li><li>
+        <a class="is-flex" href="#重新审视容器的网络需求">
+        <span class="has-mr-6">4.3</span>
+        <span>重新审视容器的网络需求</span>
+        </a></li><li>
+        <a class="is-flex" href="#网络解决方案-2">
+        <span class="has-mr-6">4.4</span>
+        <span>网络解决方案</span>
+        </a></li><li>
+        <a class="is-flex" href="#云原生网络-Cilium-BGP">
+        <span class="has-mr-6">4.5</span>
+        <span>云原生网络 Cilium+BGP</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#总结">
+        <span class="has-mr-6">5</span>
+        <span>总结</span>
+        </a></li></ul>
         </div>
     </div>
 </div>
 
         <div class="content">
-            <p><strong>转载自SegmentFault</strong></p>
+            <p><strong>转载自: <a href="https://arthurchiao.github.io/" target="_blank" rel="noopener">https://arthurchiao.github.io/</a></strong></p>
 <p><strong>本文内容仅供学习交流，如有侵权立即删除。</strong></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h3><p>这是一次完整的项目实践，Angular页面+Springboot接口+MySQL都通过Dockerfile打包成docker镜像，通过docker-compose做统一编排。目的是实现整个项目产品的轻量级和灵活性，在将各个模块的镜像都上传公共镜像仓库后，任何人都可以通过 “docker-compose up -d” 一行命令，将整个项目的前端、后端、数据库以及文件服务器等，运行在自己的服务器上。</p>
-<p>本项目是开发一个类似于segmentfault的文章共享社区，我的设想是当部署在个人服务器上时就是个人的文章库，部署在项目组的服务器上就是项目内部的文章库，部署在公司的服务器上就是所有职工的文章共享社区。突出的特点就是，项目相关的所有应用和文件资源都是灵活的，用户可以傻瓜式地部署并使用，对宿主机没有任何依赖。</p>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>过去二十多年网络发生了很多的变化，比如，</p>
+<ol>
+<li><p>数据中心物理拓扑方面，由接入-汇聚-核心三级网络架构演进到 Spine-Leaf 两级架构；</p>
+</li>
+<li><p>软件方面，出现了各种各样的网络虚拟化，例如软件实现的虚拟网桥、虚拟机交换机、 虚拟路由器、软件 overlay 网络等等；</p>
+</li>
+<li><p>另外还出现了很多新的概念和模型，例如软件定义网络（SDN）的转发与控制分离 思想，实现上可以像 Google 一样基于 OpenFlow，可以是后来用的比较多的 BGP EVPN；另外还有 Spine-Leaf 中的分布式网关概念；还有大二层网络与纯三层路 由网络等等概念。</p></li></ol>
             <div class="level is-size-7 has-text-grey">
     <div class="level-left">
         <i class="far fa-eye"></i>
@@ -273,7 +302,7 @@ var _hmt = _hmt || [];
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/11/03/Docker实战/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/2020/12/08/计算规模驱动下的网络方案演进/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -309,7 +338,7 @@ var _hmt = _hmt || [];
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/12/">12</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/13/">13</a></li>
             
         </ul>
     </nav>
@@ -359,7 +388,7 @@ var _hmt = _hmt || [];
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        12
+                        13
                     </p>
                 </div>
             </div>
@@ -467,7 +496,7 @@ var _hmt = _hmt || [];
                 <span class="level-item">Network</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Network/Architecture/">
@@ -554,7 +583,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Reproduced/">
                         <span class="tag">Reproduced</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
@@ -583,6 +612,19 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-12-08T07:30:36.000Z">2020-12-08</time></div>
+                    <a href="/2020/12/08/计算规模驱动下的网络方案演进/" class="has-link-black-ter is-size-6">计算规模驱动下的网络方案演进</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -636,19 +678,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-02T07:32:35.000Z">2020-07-02</time></div>
-                    <a href="/2020/07/02/图解TCP/" class="has-link-black-ter is-size-6">图解TCP</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/HTTP/">HTTP</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -660,6 +689,17 @@ var _hmt = _hmt || [];
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/11/">
@@ -766,6 +806,19 @@ var _hmt = _hmt || [];
             
             <div class="media-content">
                 <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-12-08T07:30:36.000Z">2020-12-08</time></div>
+                    <a href="/2020/12/08/计算规模驱动下的网络方案演进/" class="has-link-black-ter is-size-6">计算规模驱动下的网络方案演进</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-11-03T09:37:28.000Z">2020-11-03</time></div>
                     <a href="/2020/11/03/Docker实战/" class="has-link-black-ter is-size-6">Docker实战</a>
                     <p class="is-size-7 is-uppercase">
@@ -814,19 +867,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-02T07:32:35.000Z">2020-07-02</time></div>
-                    <a href="/2020/07/02/图解TCP/" class="has-link-black-ter is-size-6">图解TCP</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/HTTP/">HTTP</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -838,6 +878,17 @@ var _hmt = _hmt || [];
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/11/">
