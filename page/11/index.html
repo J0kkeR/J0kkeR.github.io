@@ -182,7 +182,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 503 个字)
+                    3 分钟 读完 (大约 501 个字)
                 </span>
                 
             </div>
@@ -190,7 +190,7 @@ var _hmt = _hmt || [];
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/02/05/Raspberry-Pi1_Config/">树莓派系统基本设置</a>
+                <a class="has-link-black-ter" href="/2019/02/05/Raspberry-Pi1/">树莓派系统基本设置</a>
             
         </h1>
         
@@ -208,10 +208,14 @@ var _hmt = _hmt || [];
 </ul>
 <hr>
 <h2 id="切换到root用户"><a href="#切换到root用户" class="headerlink" title="切换到root用户"></a>切换到root用户</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su root</span><br></pre></td></tr></table></figure>
-<h3 id="修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表"><a href="#修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表" class="headerlink" title="修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表"></a>修改Raspbian的软件源以便提供更快的下载速度<a href="http://www.raspbian.org/RaspbianMirrors" target="_blank" rel="noopener">官方认证的源列表</a></h3><p><img src="/images/post_s2/2.png" alt=""><br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/apt/sources.list</span><br><span class="line">nano /etc/apt/sources.list.d/raspi.list</span><br><span class="line">apt-get update &amp;&amp; apt-get upgrade</span><br></pre></td></tr></table></figure></p>
+<h3 id="修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表"><a href="#修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表" class="headerlink" title="修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表"></a>修改Raspbian的软件源以便提供更快的下载速度<a href="http://www.raspbian.org/RaspbianMirrors" target="_blank" rel="noopener">官方认证的源列表</a></h3><p><img src="list.png" alt=""><br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/apt/sources.list</span><br><span class="line">nano /etc/apt/sources.list.d/raspi.list</span><br><span class="line">apt-get update &amp;&amp; apt-get upgrade</span><br></pre></td></tr></table></figure></p>
 <p>把原来的地址行删除或者注释掉然后直接按这个格式扔进去就行</p>
-<p><font color="red">sources.list</font><br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb 软件源地址 stretch main non-free contrib rpi</span><br><span class="line">deb-src 软件源地址 stretch main non-free contrib rpi</span><br></pre></td></tr></table></figure></p>
-<p><font color="red">raspi.list</font><br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb 软件源地址 stretch main ui</span><br><span class="line">deb-src 软件源地址 stretch main ui</span><br></pre></td></tr></table></figure></p>
+<font color="red">sources.list</font>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb 软件源地址 stretch main non-free contrib rpi</span><br><span class="line">deb-src 软件源地址 stretch main non-free contrib rpi</span><br></pre></td></tr></table></figure>
+<font color="red">raspi.list</font>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb 软件源地址 stretch main ui</span><br><span class="line">deb-src 软件源地址 stretch main ui</span><br></pre></td></tr></table></figure>
             <div class="level is-size-7 has-text-grey">
     <div class="level-left">
         <i class="far fa-eye"></i>
@@ -227,7 +231,7 @@ var _hmt = _hmt || [];
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/02/05/Raspberry-Pi1_Config/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/2019/02/05/Raspberry-Pi1/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -907,7 +911,7 @@ var _hmt = _hmt || [];
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2020 Pe1Ha0&nbsp;
+                &copy; 2021 Pe1Ha0&nbsp;
                 Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 </p>
             </div>
