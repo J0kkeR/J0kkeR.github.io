@@ -15,16 +15,16 @@
 <meta name="keywords" content="Raspberry-Pi,Liunx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="树莓派系统基本设置">
-<meta property="og:url" content="https://www.jlovek.cn/2019/02/05/Raspberry-Pi1/index.html">
+<meta property="og:url" content="https://www.jlovek.cn/2019/02/05/Raspberry-Pi_Config/index.html">
 <meta property="og:site_name" content="J0kkeR">
 <meta property="og:description" content="Raspbian 简介 Raspbian 是专门用于 ARM 卡片式计算机 Raspberry Pi® “树莓派”的操作系统。 Raspberry Pi® “树莓派”是 2012 年问世的 ARM 计算机，旨在为儿童和所有的计算机爱好者提供一套廉价的编程学习与硬件 DIY 平台。树莓派基于 ARM11，具有 1080P 高清视频解析能力，附带用于硬件开发的 GPIO 接口，使用Linux操作系统。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://www.jlovek.cn/2019/02/05/Raspberry-Pi1/list.png">
-<meta property="og:updated_time" content="2020-06-06T08:26:01.299Z">
+<meta property="og:image" content="https://www.jlovek.cn/images/post_s2/2.png">
+<meta property="og:updated_time" content="2020-02-06T08:42:47.870Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="树莓派系统基本设置">
 <meta name="twitter:description" content="Raspbian 简介 Raspbian 是专门用于 ARM 卡片式计算机 Raspberry Pi® “树莓派”的操作系统。 Raspberry Pi® “树莓派”是 2012 年问世的 ARM 计算机，旨在为儿童和所有的计算机爱好者提供一套廉价的编程学习与硬件 DIY 平台。树莓派基于 ARM11，具有 1080P 高清视频解析能力，附带用于硬件开发的 GPIO 接口，使用Linux操作系统。">
-<meta name="twitter:image" content="https://www.jlovek.cn/2019/02/05/Raspberry-Pi1/list.png">
+<meta name="twitter:image" content="https://www.jlovek.cn/images/post_s2/2.png">
 
 
 
@@ -188,7 +188,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 501 个字)
+                    3 分钟 读完 (大约 503 个字)
                 </span>
                 
             </div>
@@ -214,14 +214,10 @@ var _hmt = _hmt || [];
 </ul>
 <hr>
 <h2 id="切换到root用户"><a href="#切换到root用户" class="headerlink" title="切换到root用户"></a>切换到root用户</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su root</span><br></pre></td></tr></table></figure>
-<h3 id="修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表"><a href="#修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表" class="headerlink" title="修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表"></a>修改Raspbian的软件源以便提供更快的下载速度<a href="http://www.raspbian.org/RaspbianMirrors" target="_blank" rel="noopener">官方认证的源列表</a></h3><p><img src="list.png" alt=""><br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/apt/sources.list</span><br><span class="line">nano /etc/apt/sources.list.d/raspi.list</span><br><span class="line">apt-get update &amp;&amp; apt-get upgrade</span><br></pre></td></tr></table></figure></p>
+<h3 id="修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表"><a href="#修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表" class="headerlink" title="修改Raspbian的软件源以便提供更快的下载速度官方认证的源列表"></a>修改Raspbian的软件源以便提供更快的下载速度<a href="http://www.raspbian.org/RaspbianMirrors" target="_blank" rel="noopener">官方认证的源列表</a></h3><p><img src="/images/post_s2/2.png" alt=""><br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/apt/sources.list</span><br><span class="line">nano /etc/apt/sources.list.d/raspi.list</span><br><span class="line">apt-get update &amp;&amp; apt-get upgrade</span><br></pre></td></tr></table></figure></p>
 <p>把原来的地址行删除或者注释掉然后直接按这个格式扔进去就行</p>
-<font color="red">sources.list</font>
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb 软件源地址 stretch main non-free contrib rpi</span><br><span class="line">deb-src 软件源地址 stretch main non-free contrib rpi</span><br></pre></td></tr></table></figure>
-<font color="red">raspi.list</font>
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb 软件源地址 stretch main ui</span><br><span class="line">deb-src 软件源地址 stretch main ui</span><br></pre></td></tr></table></figure>
+<p><font color="red">sources.list</font><br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb 软件源地址 stretch main non-free contrib rpi</span><br><span class="line">deb-src 软件源地址 stretch main non-free contrib rpi</span><br></pre></td></tr></table></figure></p>
+<p><font color="red">raspi.list</font><br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb 软件源地址 stretch main ui</span><br><span class="line">deb-src 软件源地址 stretch main ui</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <h3 id="中文支持及中文输入法"><a href="#中文支持及中文输入法" class="headerlink" title="中文支持及中文输入法"></a>中文支持及中文输入法</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install -y ttf-wqy-zenhei</span><br><span class="line">apt-get install -y scim-pinyin</span><br></pre></td></tr></table></figure>
 
@@ -300,8 +296,8 @@ var _hmt = _hmt || [];
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/02/05/Raspberry-Pi1_Config/">
-                <span class="level-item">树莓派系统基本设置</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/02/02/Raspberry-Pi/">
+                <span class="level-item">树莓派系统安装</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
